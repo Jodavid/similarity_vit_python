@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jodavid Ferreira">
 
-<title>Similaridade de Imagens usando Vision Transformers no python</title>
+<title>1&nbsp; Dataset – Similaridade de Imagens usando Vision Transformers no python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./dataset.html" rel="next">
+<link href="./tutorial.html" rel="next">
+<link href="./index.html" rel="prev">
 <link href="./cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,7 +104,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Início</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -141,13 +142,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Início</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dataset.html" class="sidebar-item-text sidebar-link">
+  <a href="./dataset.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span></a>
   </div>
 </li>
@@ -160,7 +161,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Referências</span></a>
   </div>
 </li>
     </ul>
@@ -168,25 +169,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#início" id="toc-início" class="nav-link active" data-scroll-target="#início">Início</a>
-  <ul class="collapse">
-  <li><a href="#palavras-chave" id="toc-palavras-chave" class="nav-link" data-scroll-target="#palavras-chave">Palavras-chave:</a></li>
-  <li><a href="#apresentadores" id="toc-apresentadores" class="nav-link" data-scroll-target="#apresentadores">Apresentador(es):</a></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Similaridade de Imagens usando Vision Transformers no python</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></h1>
 </div>
 
 
@@ -203,30 +194,25 @@ div.csl-indent {
 </header>
 
 
-
-<section id="início" class="level1 unnumbered">
-<h1 class="unnumbered">Início</h1><p><img src="cover.jpg" title="Similaridade de Imagens usando Vision Transformers no python" class="quarto-cover-image img-fluid"></p>
-<p>Neste tutorial, será utilizado uma abordagem para a correspondência de imagens utilizando o Vision Transformer (ViT) <span class="citation" data-cites="dosovitskiy2020image">Dosovitskiy et al. (<a href="references.html#ref-dosovitskiy2020image" role="doc-biblioref">2020</a>)</span>. O objetivo é demonstrar uma técnica de deep learning para realizar correspondência de imagens, que se refere ao processo de identificar e emparelhar partes semelhantes ou correspondentes em duas ou mais imagens. No entanto, devido a variações significativas de iluminação, ângulo de captura e qualidade da imagem, esta tarefa se torna complexa, especialmente em cenários do mundo real, como o reconhecimento de objetos, animais ou pessoas em diferentes imagens.</p>
-<p>A arquitetura ViT adapta o modelo Transformer - originalmente desenvolvido para tarefas de Processamento de Linguagem Natural (NLP) - para o processamento de dados de imagem. Ela utiliza embeddings, que são vetores que capturam a informação semântica de palavras, frases ou imagens, permitindo mapear dados semelhantes para pontos próximos em um espaço vetorial de alta dimensionalidade. Na correspondência de imagens, o desafio está em como representar as imagens de forma eficaz como embeddings, capturando características relevantes. Ao aplicar técnicas de pré-processamento, como a remoção de fundo, buscamos isolar o objeto de interesse, o que auxilia em tarefas como reconhecimento de objetos, segmentação de imagens e correspondência.</p>
-<p>A partir dos embeddings, a similaridade entre diferentes imagens é calculada utilizando a similaridade do cosseno. A imagem de interesse é comparada a uma base de dados de imagens, e os resultados são retornados com um score de similaridade. O score de similaridade do cosseno quantifica a semelhança entre duas imagens em termos de suas características extraídas. Esta métrica varia de -1 a 1, onde, quanto mais próximo de 1, mais alinhados estão os vetores que representam as imagens, indicando que elas compartilham muitas características comuns. Um valor de 0 indica que os vetores de embeddings das imagens são ortogonais, o que significa que as imagens têm pouco em comum, e quanto mais próximo de -1, mais opostos são os vetores, significando que as imagens são muito diferentes.</p>
-<p>Assim, este tutorial tem com objetivo abordar as etapas de pré-processamento de imagens, geração de embeddings usando Vision Transformers e cálculo de similaridade através da similaridade do cosseno. Ao final, os participantes entenderão como aplicar esses métodos tanto em contextos acadêmicos quanto práticos.</p>
-<p><strong>Link do modelo no Hugging-Face:</strong> https://huggingface.co/google/vit-base-patch16-224</p>
-<section id="palavras-chave" class="level3">
-<h3 class="anchored" data-anchor-id="palavras-chave">Palavras-chave:</h3>
-<p>Vision Transformers, similaridade de imagens, deep learning, embeddings, visão computacional</p>
-</section>
-<section id="apresentadores" class="level3">
-<h3 class="anchored" data-anchor-id="apresentadores">Apresentador(es):</h3>
-<p>Jodavid Ferreira</p>
+<p>O dados foram obtidos no Kaggle através do link <a href="https://www.kaggle.com/datasets/prasunroy/natural-images" class="uri">https://www.kaggle.com/datasets/prasunroy/natural-images</a> que foram obtidos do paper - <span class="citation" data-cites="roy2018effects">Roy et al. (<a href="references.html#ref-roy2018effects" role="doc-biblioref">2018</a>)</span>.</p>
+<p>O dataset contém as seguintes informações:</p>
+<ul>
+<li>Airplane images obtained from <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
+<li>Car images obtained from <a href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html" class="uri">https://ai.stanford.edu/~jkrause/cars/car_dataset.html</a></li>
+<li>Cat images obtained from <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
+<li>Dog images obtained from <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
+<li>Flower images obtained from <a href="http://www.image-net.org" class="uri">http://www.image-net.org</a></li>
+<li>Fruit images obtained from <a href="https://www.kaggle.com/moltean/fruits" class="uri">https://www.kaggle.com/moltean/fruits</a></li>
+<li>Motorbike images obtained from <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
+<li>Person images obtained from <a href="http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset" class="uri">http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset</a></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-dosovitskiy2020image" class="csl-entry" role="listitem">
-Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2020. <span>“An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
+<div id="ref-roy2018effects" class="csl-entry" role="listitem">
+Roy, Prasun, Subhankar Ghosh, Saumik Bhattacharya, and Umapada Pal. 2018. <span>“Effects of Degradations on Deep Neural Network Architectures.”</span> <em>arXiv Preprint arXiv:1807.10108</em>.
 </div>
 </div>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -648,10 +634,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Início">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Início</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dataset.html" class="pagination-link" aria-label="Dataset">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tutorial.html" class="pagination-link" aria-label="Tutorial">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -663,7 +652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/dataset.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Este material foi criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
