@@ -1,0 +1,62 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Similaridade de Imagens usando Vision Transformers no python",
+    "section": "",
+    "text": "Início\nNeste tutorial, será utilizado uma abordagem para a correspondência de imagens utilizando o Vision Transformer (ViT) Dosovitskiy et al. (2020). O objetivo é demonstrar uma técnica de deep learning para realizar correspondência de imagens, que se refere ao processo de identificar e emparelhar partes semelhantes ou correspondentes em duas ou mais imagens. No entanto, devido a variações significativas de iluminação, ângulo de captura e qualidade da imagem, esta tarefa se torna complexa, especialmente em cenários do mundo real, como o reconhecimento de objetos, animais ou pessoas em diferentes imagens.\nA arquitetura ViT adapta o modelo Transformer - originalmente desenvolvido para tarefas de Processamento de Linguagem Natural (NLP) - para o processamento de dados de imagem. Ela utiliza embeddings, que são vetores que capturam a informação semântica de palavras, frases ou imagens, permitindo mapear dados semelhantes para pontos próximos em um espaço vetorial de alta dimensionalidade. Na correspondência de imagens, o desafio está em como representar as imagens de forma eficaz como embeddings, capturando características relevantes. Ao aplicar técnicas de pré-processamento, como a remoção de fundo, buscamos isolar o objeto de interesse, o que auxilia em tarefas como reconhecimento de objetos, segmentação de imagens e correspondência.\nA partir dos embeddings, a similaridade entre diferentes imagens é calculada utilizando a similaridade do cosseno. A imagem de interesse é comparada a uma base de dados de imagens, e os resultados são retornados com um score de similaridade. O score de similaridade do cosseno quantifica a semelhança entre duas imagens em termos de suas características extraídas. Esta métrica varia de -1 a 1, onde, quanto mais próximo de 1, mais alinhados estão os vetores que representam as imagens, indicando que elas compartilham muitas características comuns. Um valor de 0 indica que os vetores de embeddings das imagens são ortogonais, o que significa que as imagens têm pouco em comum, e quanto mais próximo de -1, mais opostos são os vetores, significando que as imagens são muito diferentes.\nAssim, este tutorial tem com objetivo abordar as etapas de pré-processamento de imagens, geração de embeddings usando Vision Transformers e cálculo de similaridade através da similaridade do cosseno. Ao final, os participantes entenderão como aplicar esses métodos tanto em contextos acadêmicos quanto práticos.\nLink do modelo no Hugging-Face: https://huggingface.co/google/vit-base-patch16-224\n\nPalavras-chave:\nVision Transformers, similaridade de imagens, deep learning, embeddings, visão computacional\n\n\nApresentador(es):\nJodavid Ferreira\n\n\n\n\nDosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al. 2020. “An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale.” arXiv Preprint arXiv:2010.11929.",
+    "crumbs": [
+      "Início"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk\nWeissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al.\n2020. “An Image Is Worth 16x16 Words: Transformers for Image\nRecognition at Scale.” arXiv Preprint arXiv:2010.11929.\n\n\nRoy, Prasun, Subhankar Ghosh, Saumik Bhattacharya, and Umapada Pal.\n2018. “Effects of Degradations on Deep Neural Network\nArchitectures.” arXiv Preprint arXiv:1807.10108.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "2  Tutorial",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tutorial</span>"
+    ]
+  },
+  {
+    "objectID": "dataset.html",
+    "href": "dataset.html",
+    "title": "1  Dataset",
+    "section": "",
+    "text": "O dados foram obtidos no Kaggle através do link https://www.kaggle.com/datasets/prasunroy/natural-images que foram obtidos do paper - Roy et al. (2018).\nO dataset contém as seguintes informações:\n\nAirplane images obtained from http://host.robots.ox.ac.uk/pascal/VOC\nCar images obtained from https://ai.stanford.edu/~jkrause/cars/car_dataset.html\nCat images obtained from https://www.kaggle.com/c/dogs-vs-cats\nDog images obtained from https://www.kaggle.com/c/dogs-vs-cats\nFlower images obtained from http://www.image-net.org\nFruit images obtained from https://www.kaggle.com/moltean/fruits\nMotorbike images obtained from http://host.robots.ox.ac.uk/pascal/VOC\nPerson images obtained from http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset\n\n\n\n\n\nRoy, Prasun, Subhankar Ghosh, Saumik Bhattacharya, and Umapada Pal. 2018. “Effects of Degradations on Deep Neural Network Architectures.” arXiv Preprint arXiv:1807.10108.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Dataset</span>"
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Similaridade de Imagens usando Vision Transformers no python"
+  reader-mode: true
+  
+  #navbar:
+  #  search: true
+  sidebar:
+    logo: altair-hist.png
+    title: "ViT com Python"
+
+  page-footer:
+    left: |
+      Similaridade de Imagens usando Vision Transformers no python foi escrito
+       por Jodavid Ferreira.
+    right: |
+      Este material foi criado com <a href="https://quarto.org/">Quarto</a>.
+
+  cover-image: cover.jpg
+  favicon: cover.jpg
+  site-url: https://jodavid.github.io/
+  repo-url: https://github.com/Jodavid/similarity_vit_python/
+  repo-branch: main
+  repo-actions: [edit, issue]
+
+  chapters:
+    - index.qmd
+    - dataset.qmd
+    - tutorial.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - r4ds.scss
+    code-link: true
+
+    author-meta: "Jodavid Ferreira"
+    include-in-header: "plausible.html"
+    callout-appearance: simple
+
+editor: source
+
+
+

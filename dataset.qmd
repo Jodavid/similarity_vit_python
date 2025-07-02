@@ -1,0 +1,16 @@
+# Dataset
+
+O dados foram obtidos no Kaggle através do link 
+<https://www.kaggle.com/datasets/prasunroy/natural-images>
+que foram obtidos do paper - @roy2018effects.
+
+O dataset contém as seguintes informações:
+
+- Airplane images obtained from <http://host.robots.ox.ac.uk/pascal/VOC>
+- Car images obtained from <https://ai.stanford.edu/~jkrause/cars/car_dataset.html>
+- Cat images obtained from <https://www.kaggle.com/c/dogs-vs-cats>
+- Dog images obtained from <https://www.kaggle.com/c/dogs-vs-cats>
+- Flower images obtained from <http://www.image-net.org>
+- Fruit images obtained from <https://www.kaggle.com/moltean/fruits>
+- Motorbike images obtained from <http://host.robots.ox.ac.uk/pascal/VOC>
+- Person images obtained from <http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset>
