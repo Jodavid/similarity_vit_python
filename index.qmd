@@ -1,7 +1,7 @@
 # Início {.unnumbered}
 
 Neste tutorial, será utilizado uma abordagem para a correspondência de imagens
-utilizando o Vision Transformer (ViT) @dosovitskiy2020image. O
+utilizando o Vision Transformer (ViT) [@dosovitskiy2020image]. O
 objetivo é demonstrar uma técnica de deep learning para realizar correspondência de
 imagens, que se refere ao processo de identificar e emparelhar partes semelhantes ou
 correspondentes em duas ou mais imagens. No entanto, devido a variações significativas

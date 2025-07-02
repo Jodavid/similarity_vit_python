@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jodavid Ferreira">
 
-<title>1&nbsp; Dataset – Similaridade de Imagens usando Vision Transformers no python</title>
+<title>Base de dados – Similaridade de Imagens usando Vision Transformers no python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -53,7 +53,7 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./tutorial.html" rel="next">
 <link href="./index.html" rel="prev">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./artigo-imagem-1.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -92,6 +92,35 @@ div.csl-indent {
 }</script>
 <script defer="" data-domain="jodavid.github.io" src="https://plausible.io/js/plausible.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -104,7 +133,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dataset.html">Base de dados</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,7 +148,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./altair-hist.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./artigo-imagem-1.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ViT com Python</a> 
@@ -149,13 +178,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span></a>
+ <span class="menu-text">Base de dados</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span></a>
+ <span class="menu-text">Tutorial</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -177,7 +206,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></h1>
+<h1 class="title">Base de dados</h1>
 </div>
 
 
@@ -194,23 +223,48 @@ div.csl-indent {
 </header>
 
 
-<p>O dados foram obtidos no Kaggle através do link <a href="https://www.kaggle.com/datasets/prasunroy/natural-images" class="uri">https://www.kaggle.com/datasets/prasunroy/natural-images</a> que foram obtidos do paper - <span class="citation" data-cites="roy2018effects">Roy et al. (<a href="references.html#ref-roy2018effects" role="doc-biblioref">2018</a>)</span>.</p>
-<p>O dataset contém as seguintes informações:</p>
+<p>A seguir é descrito informações sobre a base de dados utilizada nesse tutorial.</p>
+<p>O conjunto de dados criado é considerado referência (<em>benchmark</em>) para o trabalho <em>Effects of Degradations on Deep Neural Network Architectures</em> <span class="citation" data-cites="roy2018effects">(<a href="references.html#ref-roy2018effects" role="doc-biblioref">Roy et al. 2018</a>)</span>.</p>
+<p>A base de dados foi nomeada de <strong>Natural Images</strong> e pode ser encontrada no Kaggle e no Github.</p>
 <ul>
-<li>Airplane images obtained from <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
-<li>Car images obtained from <a href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html" class="uri">https://ai.stanford.edu/~jkrause/cars/car_dataset.html</a></li>
-<li>Cat images obtained from <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
-<li>Dog images obtained from <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
-<li>Flower images obtained from <a href="http://www.image-net.org" class="uri">http://www.image-net.org</a></li>
-<li>Fruit images obtained from <a href="https://www.kaggle.com/moltean/fruits" class="uri">https://www.kaggle.com/moltean/fruits</a></li>
-<li>Motorbike images obtained from <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
-<li>Person images obtained from <a href="http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset" class="uri">http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset</a></li>
+<li>Link do kaggle: <a href="https://www.kaggle.com/datasets/prasunroy/natural-images" class="uri">https://www.kaggle.com/datasets/prasunroy/natural-images</a></li>
+<li>Link do github: <a href="https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file" class="uri">https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file</a></li>
+</ul>
+<p>Uma descrição da base dados retirada do paper <span class="citation" data-cites="roy2018effects">Roy et al. (<a href="references.html#ref-roy2018effects" role="doc-biblioref">2018</a>)</span> é a seguinte:</p>
+<blockquote class="blockquote">
+<p>O conjunto de dados ImageNet <span class="citation" data-cites="deng2009imagenet">(<a href="references.html#ref-deng2009imagenet" role="doc-biblioref">Deng et al. 2009</a>)</span> é um padrão moderno de larga escala para avaliar redes neurais profundas. As redes neurais convolucionais (CNNs) de última geração (<em>State-of-the-art</em>) são geralmente treinadas e validadas em 1000 classes de objetos do ImageNet. Mais recentemente, as redes de cápsulas (<em>capsule networks</em>) <span class="citation" data-cites="sabour2017dynamic">(<a href="references.html#ref-sabour2017dynamic" role="doc-biblioref">Sabour, Frosst, and Hinton 2017</a>)</span> relatam taxas de reconhecimento muito altas para classificação de imagens. No entanto, devido à natureza do novo algoritmo de roteamento dinâmico, treinar e validar redes de cápsulas em 1000 classes é extremamente difícil. Portanto, para estudar as redes de cápsulas em conjunto com as CNNs, um conjunto de dados com um número menor de classes é mais adequado. Um candidato potencial é o conjunto de dados CIFAR-10 <span class="citation" data-cites="krizhevsky2009learning">(<a href="references.html#ref-krizhevsky2009learning" role="doc-biblioref">Krizhevsky, Hinton, et al. 2009</a>)</span>, que consiste em 10 classes de objetos. Contudo, o CIFAR-10 inclui apenas imagens de baixa resolução de <span class="math inline">\(32 \times 32\)</span>, tornando-o uma escolha inadequada, semelhante ao MNIST, para testar (<em>benchmarking</em>) redes muito profundas. <strong>Por essas razões, compilamos um conjunto de dados de imagens do mundo real de alta resolução de 8 classes diversas. O conjunto de dados contém 6899 amostras de imagens de aviões (727), carros (968), gatos (885), cães (702), flores (843), frutas (1000), motos (788) e pessoas (986). Utilizamos 5724 imagens para treinamento e 1175 imagens para validação em nossos experimentos.</strong></p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Figura1.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplos de imagens existentes na base de dados utilizada.</figcaption>
+</figure>
+</div>
+<p>A Figura accima mostra algumas imagens do conjunto de dados. As imagens para compor <em>Natural Images</em> foram obtidas nos seguintes locais:</p>
+<ul>
+<li>Imagens de aviões foram obtidas de <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
+<li>Imagens de carro foram obtidas de <a href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html" class="uri">https://ai.stanford.edu/~jkrause/cars/car_dataset.html</a></li>
+<li>Imgens de gato foram obtidas de <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
+<li>Imagens de cachorro foram obtidas de <a href="https://www.kaggle.com/c/dogs-vs-cats" class="uri">https://www.kaggle.com/c/dogs-vs-cats</a></li>
+<li>Imagens de flores foram obtidas de <a href="http://www.image-net.org" class="uri">http://www.image-net.org</a></li>
+<li>Imagens de frutas foram obtidas de <a href="https://www.kaggle.com/moltean/fruits" class="uri">https://www.kaggle.com/moltean/fruits</a></li>
+<li>Imagens de moto foram obtidas de <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
+<li>Imagens de pessoas foram obtidas de <a href="http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset" class="uri">http://www.briancbecker.com/blog/research/pubfig83-lfw-dataset</a></li>
 </ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-deng2009imagenet" class="csl-entry" role="listitem">
+Deng, Jia, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei. 2009. <span>“Imagenet: A Large-Scale Hierarchical Image Database.”</span> In <em>2009 IEEE Conference on Computer Vision and Pattern Recognition</em>, 248–55. Ieee.
+</div>
+<div id="ref-krizhevsky2009learning" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Geoffrey Hinton, et al. 2009. <span>“Learning Multiple Layers of Features from Tiny Images.”</span>
+</div>
 <div id="ref-roy2018effects" class="csl-entry" role="listitem">
 Roy, Prasun, Subhankar Ghosh, Saumik Bhattacharya, and Umapada Pal. 2018. <span>“Effects of Degradations on Deep Neural Network Architectures.”</span> <em>arXiv Preprint arXiv:1807.10108</em>.
+</div>
+<div id="ref-sabour2017dynamic" class="csl-entry" role="listitem">
+Sabour, Sara, Nicholas Frosst, and Geoffrey E Hinton. 2017. <span>“Dynamic Routing Between Capsules.”</span> <em>Advances in Neural Information Processing Systems</em> 30.
 </div>
 </div>
 
@@ -640,7 +694,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./tutorial.html" class="pagination-link" aria-label="Tutorial">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Tutorial</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

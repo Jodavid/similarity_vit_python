@@ -9,7 +9,7 @@ book:
   #navbar:
   #  search: true
   sidebar:
-    logo: altair-hist.png
+    logo: artigo-imagem-1.png
     title: "ViT com Python"
 
   page-footer:
@@ -19,8 +19,8 @@ book:
     right: |
       Este material foi criado com <a href="https://quarto.org/">Quarto</a>.
 
-  cover-image: cover.jpg
-  favicon: cover.jpg
+  # cover-image: cover.jpg
+  favicon: artigo-imagem-1.png
   site-url: https://jodavid.github.io/
   repo-url: https://github.com/Jodavid/similarity_vit_python/
   repo-branch: main
@@ -29,7 +29,10 @@ book:
   chapters:
     - index.qmd
     - dataset.qmd
-    - tutorial.qmd
+    - part: tutorial.qmd
+      chapters:
+        - preprocess.qmd
+        - similaridade.qmd
     - references.qmd
 
 bibliography: references.bib

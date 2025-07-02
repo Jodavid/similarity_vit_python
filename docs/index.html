@@ -52,7 +52,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./dataset.html" rel="next">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./artigo-imagem-1.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -118,7 +118,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./altair-hist.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./artigo-imagem-1.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ViT com Python</a> 
@@ -148,15 +148,32 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span></a>
+ <span class="menu-text">Base de dados</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span></a>
+  <a href="./preprocess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">preprocess.html</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./similaridade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">similaridade.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -203,10 +220,9 @@ div.csl-indent {
 </header>
 
 
-
 <section id="início" class="level1 unnumbered">
-<h1 class="unnumbered">Início</h1><p><img src="cover.jpg" title="Similaridade de Imagens usando Vision Transformers no python" class="quarto-cover-image img-fluid"></p>
-<p>Neste tutorial, será utilizado uma abordagem para a correspondência de imagens utilizando o Vision Transformer (ViT) <span class="citation" data-cites="dosovitskiy2020image">Dosovitskiy et al. (<a href="references.html#ref-dosovitskiy2020image" role="doc-biblioref">2020</a>)</span>. O objetivo é demonstrar uma técnica de deep learning para realizar correspondência de imagens, que se refere ao processo de identificar e emparelhar partes semelhantes ou correspondentes em duas ou mais imagens. No entanto, devido a variações significativas de iluminação, ângulo de captura e qualidade da imagem, esta tarefa se torna complexa, especialmente em cenários do mundo real, como o reconhecimento de objetos, animais ou pessoas em diferentes imagens.</p>
+<h1 class="unnumbered">Início</h1>
+<p>Neste tutorial, será utilizado uma abordagem para a correspondência de imagens utilizando o Vision Transformer (ViT) <span class="citation" data-cites="dosovitskiy2020image">(<a href="references.html#ref-dosovitskiy2020image" role="doc-biblioref">Dosovitskiy et al. 2020</a>)</span>. O objetivo é demonstrar uma técnica de deep learning para realizar correspondência de imagens, que se refere ao processo de identificar e emparelhar partes semelhantes ou correspondentes em duas ou mais imagens. No entanto, devido a variações significativas de iluminação, ângulo de captura e qualidade da imagem, esta tarefa se torna complexa, especialmente em cenários do mundo real, como o reconhecimento de objetos, animais ou pessoas em diferentes imagens.</p>
 <p>A arquitetura ViT adapta o modelo Transformer - originalmente desenvolvido para tarefas de Processamento de Linguagem Natural (NLP) - para o processamento de dados de imagem. Ela utiliza embeddings, que são vetores que capturam a informação semântica de palavras, frases ou imagens, permitindo mapear dados semelhantes para pontos próximos em um espaço vetorial de alta dimensionalidade. Na correspondência de imagens, o desafio está em como representar as imagens de forma eficaz como embeddings, capturando características relevantes. Ao aplicar técnicas de pré-processamento, como a remoção de fundo, buscamos isolar o objeto de interesse, o que auxilia em tarefas como reconhecimento de objetos, segmentação de imagens e correspondência.</p>
 <p>A partir dos embeddings, a similaridade entre diferentes imagens é calculada utilizando a similaridade do cosseno. A imagem de interesse é comparada a uma base de dados de imagens, e os resultados são retornados com um score de similaridade. O score de similaridade do cosseno quantifica a semelhança entre duas imagens em termos de suas características extraídas. Esta métrica varia de -1 a 1, onde, quanto mais próximo de 1, mais alinhados estão os vetores que representam as imagens, indicando que elas compartilham muitas características comuns. Um valor de 0 indica que os vetores de embeddings das imagens são ortogonais, o que significa que as imagens têm pouco em comum, e quanto mais próximo de -1, mais opostos são os vetores, significando que as imagens são muito diferentes.</p>
 <p>Assim, este tutorial tem com objetivo abordar as etapas de pré-processamento de imagens, geração de embeddings usando Vision Transformers e cálculo de similaridade através da similaridade do cosseno. Ao final, os participantes entenderão como aplicar esses métodos tanto em contextos acadêmicos quanto práticos.</p>
@@ -650,8 +666,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dataset.html" class="pagination-link" aria-label="Dataset">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./dataset.html" class="pagination-link" aria-label="Base de dados">
+        <span class="nav-page-text">Base de dados</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

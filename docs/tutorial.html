@@ -8,7 +8,7 @@
 
 <meta name="author" content="Jodavid Ferreira">
 
-<title>2&nbsp; Tutorial – Similaridade de Imagens usando Vision Transformers no python</title>
+<title>Tutorial – Similaridade de Imagens usando Vision Transformers no python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,9 +51,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./preprocess.html" rel="next">
 <link href="./dataset.html" rel="prev">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./artigo-imagem-1.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,6 +92,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script defer="" data-domain="jodavid.github.io" src="https://plausible.io/js/plausible.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -84,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorial.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tutorial.html">Tutorial</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -99,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./altair-hist.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./artigo-imagem-1.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ViT com Python</a> 
@@ -129,15 +178,32 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span></a>
+ <span class="menu-text">Base de dados</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorial.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span></a>
+  <a href="./preprocess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pré-processamento das Imagens</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./similaridade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Similaridade das Imagens</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -149,15 +215,33 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#modelo-vit" id="toc-modelo-vit" class="nav-link active" data-scroll-target="#modelo-vit">Modelo ViT</a>
+  <ul class="collapse">
+  <li><a href="#introdução-ao-vision-transformer-vit" id="toc-introdução-ao-vision-transformer-vit" class="nav-link" data-scroll-target="#introdução-ao-vision-transformer-vit">Introdução ao Vision Transformer (ViT)</a></li>
+  <li><a href="#arquitetura-do-vit" id="toc-arquitetura-do-vit" class="nav-link" data-scroll-target="#arquitetura-do-vit">Arquitetura do ViT</a></li>
+  <li><a href="#equações-fundamentais" id="toc-equações-fundamentais" class="nav-link" data-scroll-target="#equações-fundamentais">Equações Fundamentais</a></li>
+  <li><a href="#dados-de-treinamento-e-dimensões" id="toc-dados-de-treinamento-e-dimensões" class="nav-link" data-scroll-target="#dados-de-treinamento-e-dimensões">Dados de Treinamento e Dimensões</a></li>
+  <li><a href="#viés-indutivo-e-dependência-de-dados" id="toc-viés-indutivo-e-dependência-de-dados" class="nav-link" data-scroll-target="#viés-indutivo-e-dependência-de-dados">Viés Indutivo e Dependência de Dados</a></li>
+  <li><a href="#conjuntos-de-dados-e-resolução" id="toc-conjuntos-de-dados-e-resolução" class="nav-link" data-scroll-target="#conjuntos-de-dados-e-resolução">Conjuntos de Dados e Resolução</a></li>
+  <li><a href="#modelos-e-desempenho" id="toc-modelos-e-desempenho" class="nav-link" data-scroll-target="#modelos-e-desempenho">Modelos e Desempenho</a></li>
+  </ul></li>
+  <li><a href="#faiss" id="toc-faiss" class="nav-link" data-scroll-target="#faiss">FAISS</a></li>
+  <li><a href="#distância-do-cosseno" id="toc-distância-do-cosseno" class="nav-link" data-scroll-target="#distância-do-cosseno">Distância do Cosseno</a></li>
+  <li><a href="#remoção-de-background" id="toc-remoção-de-background" class="nav-link" data-scroll-target="#remoção-de-background">Remoção de Background</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/tutorial.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></h1>
+<h1 class="title">Tutorial</h1>
 </div>
 
 
@@ -174,9 +258,132 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>In summary, this book has no content whatsoever.</p>
+<p>O material do tutorial está dividido em duas partes, uma referente ao pré-processamento das imagens, a outra ao código para fazer a similaridade entre uma nova imagem com as imagens existentes na base de dados.</p>
+<p>Abaixo será detalhado o modelo utilizado, ferramentas e resultados importantes para acompanhamento do tutorial.</p>
+<section id="modelo-vit" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-vit">Modelo ViT</h2>
+<section id="introdução-ao-vision-transformer-vit" class="level3">
+<h3 class="anchored" data-anchor-id="introdução-ao-vision-transformer-vit">Introdução ao Vision Transformer (ViT)</h3>
+<p>O Vision Transformer (ViT) é uma arquitetura de modelo para tarefas de visão computacional que aplica diretamente um Transformer padrão, uma arquitetura que se tornou o padrão de fato no Processamento de Linguagem Natural (PLN), a imagens. A principal inovação do ViT é sua abordagem para processar imagens com o mínimo possível de modificações na arquitetura Transformer original.</p>
+<p>Enquanto os Transformers se tornaram o padrão em Processamento de Linguagem Natural (PLN) <span class="citation" data-cites="vaswani2017attention">(<a href="references.html#ref-vaswani2017attention" role="doc-biblioref">Vaswani et al. 2017</a>)</span>, a visão computacional era dominada por Redes Neurais Convolucionais (CNNs). Diferente das Redes Neurais Convolucionais (CNNs), que processam imagens usando filtros locais e hierárquicos, o ViT trata uma imagem como uma sequência de “palavras” ou patches. Essa abordagem dispensa a necessidade de uma estrutura convolucional, mostrando que a dependência de CNNs não é estritamente necessária para obter alto desempenho em tarefas de reconhecimento de imagem.</p>
+<p>A abordagem do ViT demonstra que a dependência de convoluções não é necessária para alcançar um desempenho de ponta. A estratégia central é simples e poderosa:</p>
+<ol type="1">
+<li><strong>Dividir</strong> a imagem em uma grade de patches (recortes) de tamanho fixo.</li>
+<li><strong>Tratar</strong> cada patch como um “token” (semelhante a uma palavra em uma frase).</li>
+<li><strong>Processar</strong> essa sequência de patches com um Transformer Encoder padrão.</li>
+</ol>
+<p>Quando pré-treinado em conjuntos de dados massivos, o ViT atinge resultados excelentes em tarefas de classificação de imagem, muitas vezes superando as CNNs e exigindo menos recursos computacionais para o treinamento.</p>
+</section>
+<section id="arquitetura-do-vit" class="level3">
+<h3 class="anchored" data-anchor-id="arquitetura-do-vit">Arquitetura do ViT</h3>
+<p>A arquitetura do ViT é projetada para seguir o Transformer original o mais fielmente possível, garantindo escalabilidade e a reutilização de implementações eficientes de PLN. O funcionamento do ViT pode ser dividido em três etapas principais, conforme ilustrado no diagrama do modelo.</p>
+<p><img src="artigo-imagem-1.png" class="img-fluid"></p>
+<section id="divisão-da-imagem-e-geração-de-embeddings" class="level4">
+<h4 class="anchored" data-anchor-id="divisão-da-imagem-e-geração-de-embeddings">1. Divisão da Imagem e Geração de Embeddings</h4>
+<p>Para que um Transformer processe uma imagem 2D, ela é convertida em uma sequência 1D de tokens, o modelo primeiro processa a imagem de entrada da seguinte forma:</p>
+<ul>
+<li><p><strong>Divisão em Patches (Patching)</strong>: Uma imagem de entrada com dimensões <span class="math inline">\(x \in \mathbb{R}^{H \times W \times C}\)</span> é dividida em uma sequência de <span class="math inline">\(N\)</span> patches achatados <span class="math inline">\(x_{p} \in \mathbb{R}^{N \times (P^2 \cdot C)}\)</span></p>
+<ul>
+<li><code>(H, W)</code> é a resolução da imagem original (e.g., 224x224).</li>
+<li><code>(P, P)</code> é a resolução de cada patch (e.g., 16x16).</li>
+<li>[cite_start]<code>N = HW / P^2</code> é o número resultante de patches, que se torna o comprimento da sequência de entrada para o Transformer[cite: 54].</li>
+</ul></li>
+<li><p><strong>Projeção Linear (Patch Embeddings)</strong>: Cada patch achatado é mapeado para um vetor de dimensão latente constante <code>D</code> através de uma camada linear (projeção linear) treinável. O resultado é chamado de <em>patch embeddings</em>.</p></li>
+<li><p><strong>Embedding de Posição</strong>: Como o Transformer não processa a ordem dos elementos nativamente, embeddings de posição 1D treináveis são somados aos patch embeddings para que o modelo aprenda a informação espacial e a estrutura da imagem. O modelo aprende a codificar a distância e a estrutura da imagem na similaridade desses embeddings.</p></li>
+<li><p><strong>Token de Classificação <code>[class]</code></strong>: Inspirado no token <code>[CLS]</code> do modelo BERT <span class="citation" data-cites="devlin2019bert">(<a href="references.html#ref-devlin2019bert" role="doc-biblioref">Devlin et al. 2019</a>)</span>, um embedding treinável é adicionado ao início da sequência de patches. O estado final deste token na saída do encoder é usado como a representação agregada de toda a imagem para a tarefa de classificação.</p></li>
+</ul>
+</section>
+<section id="transformer-encoder" class="level4">
+<h4 class="anchored" data-anchor-id="transformer-encoder">2. Transformer Encoder</h4>
+<p>A sequência de vetores de embedding resultante é passada por um Transformer Encoder padrão, que consiste em <code>L</code> blocos idênticos. Cada bloco contém duas sub-camadas principais: 1. <strong>Multi-Head Self-Attention (MSA)</strong>: Permite que cada patch interaja com todos os outros patches, integrando informações de forma global desde a primeira camada. 2. <strong>Feed-Forward (MLP)</strong>: Uma rede neural feed-forward de duas camadas com ativação GELU.</p>
+<p>Normalização de camada (<em>LayerNorm</em>) é aplicada antes de cada bloco, e conexões residuais são usadas após cada sub-camada. A MSA permite que o modelo integre informações de toda a imagem, mesmo nas camadas mais iniciais.</p>
+</section>
+<section id="cabeça-de-classificação-classification-head" class="level4">
+<h4 class="anchored" data-anchor-id="cabeça-de-classificação-classification-head">3. Cabeça de Classificação (Classification Head)</h4>
+<p>Finalmente, a tarefa de classificação é realizada:</p>
+<ul>
+<li>Uma “cabeça” de classificação é anexada ao token <code>[class]</code> na saída do Transformer Encoder.</li>
+<li>Durante o pré-treinamento, essa cabeça é tipicamente um MLP com uma camada oculta.</li>
+<li>Para o <strong>fine-tuning</strong> em uma nova tarefa, ela é substituída por uma única camada linear com <code>K</code> neurônios, onde <code>K</code> é o número de classes do novo dataset.</li>
+</ul>
+</section>
+</section>
+<section id="equações-fundamentais" class="level3">
+<h3 class="anchored" data-anchor-id="equações-fundamentais">Equações Fundamentais</h3>
+<p>O fluxo de dados através do ViT pode ser descrito pelas seguintes equações:</p>
+<p><span class="math display">\[
+z_0 = [x_{class}; x_p^1\mathbf{E}; x_p^2\mathbf{E}; \dots; x_p^N\mathbf{E}] + \mathbf{E}_{pos},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf{E} \in \mathbb{R}^{(P^2 \cdot C) \times D}, \mathbf{E}_{pos} \in \mathbb{R}^{(N+1) \times D} \quad (1)
+\]</span></p>
+<p><span class="math display">\[
+z'_l = \text{MSA}(\text{LN}(z_{l-1})) + z_{l-1}, \quad l=1 \dots L \quad (2)
+\]</span></p>
+<p><span class="math display">\[
+z_l = \text{MLP}(\text{LN}(z'_l)) + z'_l, \quad l=1 \dots L \quad (3)
+\]</span></p>
+<p><span class="math display">\[
+y = \text{LN}(z_L^0) \quad (4)
+\]</span></p>
+<ul>
+<li><strong>Eq. 1</strong>: Constrói a sequência de entrada, combinando o token de classe <code>[class]</code>, os patch embeddings projetados (<code>E</code>), e os embeddings de posição (<code>E_pos</code>).</li>
+<li><strong>Eq. 2 &amp; 3</strong>: Descrevem o processamento dentro de cada uma das <code>L</code> camadas do Transformer, com as operações de Multi-Head Self-Attention (MSA) e MLP, juntamente com a normalização (LN) e as conexões residuais.</li>
+<li><strong>Eq. 4</strong>: Extrai a representação final da imagem (<code>y</code>) a partir do primeiro token da sequência (classe) (<code>z_L^0</code>) na última camada.</li>
+</ul>
+</section>
+<section id="dados-de-treinamento-e-dimensões" class="level3">
+<h3 class="anchored" data-anchor-id="dados-de-treinamento-e-dimensões">Dados de Treinamento e Dimensões</h3>
+<p>Um ponto crucial do ViT é sua relação com a quantidade de dados de treinamento.</p>
+</section>
+<section id="viés-indutivo-e-dependência-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="viés-indutivo-e-dependência-de-dados">Viés Indutivo e Dependência de Dados</h3>
+<ul>
+<li>O ViT possui muito menos <strong>viés indutivo</strong> específico para imagens (como localidade e equivariância à translação) do que as CNNs. Em uma CNN, a localidade e a equivariância à translação são incorporadas em cada camada. No ViT, apenas as camadas MLP são locais, enquanto as camadas de auto-atenção são globais.</li>
+<li>Como consequência, o ViT <strong>não generaliza bem quando treinado em conjuntos de dados de tamanho insuficiente</strong>. Seu desempenho é modesto em datasets de médio porte (como o ImageNet) se comparado a ResNets de tamanho similar.</li>
+<li>No entanto, essa desvantagem desaparece quando o modelo é pré-treinado em <strong>conjuntos de dados massivos (14M a 300M de imagens)</strong>. Em grande escala, o ViT atinge ou supera o estado da arte, mostrando que o aprendizado de padrões a partir dos dados pode superar a necessidade de um viés indutivo forte.</li>
+</ul>
+</section>
+<section id="conjuntos-de-dados-e-resolução" class="level3">
+<h3 class="anchored" data-anchor-id="conjuntos-de-dados-e-resolução">Conjuntos de Dados e Resolução</h3>
+<p>Para explorar a escalabilidade, os modelos ViT foram pré-treinados em datasets de tamanhos variados:</p>
+<ul>
+<li><strong>ImageNet</strong>: 1.3 milhão de imagens e 1k classes.</li>
+<li><strong>ImageNet-21k</strong>: 14 milhões de imagens e 21k classes.</li>
+<li><strong>JFT-300M</strong>: 303 milhões de imagens de alta resolução e 18k classes.</li>
+</ul>
+<p>A resolução das imagens durante o treinamento é tipicamente <strong>224x224</strong>. No entanto, para fine-tuning, é comum e benéfico usar resoluções mais altas, como <strong>384x384</strong> ou <strong>512x512</strong>, ajustando as embeddings de posição via interpolação 2D.</p>
+</section>
+<section id="modelos-e-desempenho" class="level3">
+<h3 class="anchored" data-anchor-id="modelos-e-desempenho">Modelos e Desempenho</h3>
+<p>Existem diferentes variantes do ViT, baseadas nas configurações do BERT, como <strong>ViT-Base</strong>, <strong>ViT-Large</strong> e <strong>ViT-Huge</strong>, que variam em número de camadas, tamanho da dimensão oculta (<code>D</code>), e número de “cabeças” de atenção.</p>
+<p>O principal resultado é que o ViT, quando pré-treinado no dataset JFT-300M, <strong>supera as ResNets de última geração em diversas tarefas de classificação, exigindo substancialmente menos recursos computacionais para o pré-treinamento</strong>. Isso demonstra que a arquitetura Transformer, embora originalmente projetada para texto, é uma abordagem surpreendentemente eficaz e escalável para o reconhecimento de imagens em grande escala. Notavelmente, eles fazem isso com um custo computacional de pré-treinamento significativamente menor do que modelos CNN concorrentes como o BiT <span class="citation" data-cites="kolesnikov2020big">(<a href="references.html#ref-kolesnikov2020big" role="doc-biblioref">Kolesnikov et al. 2020</a>)</span>.</p>
+<hr>
+<hr>
+</section>
+</section>
+<section id="faiss" class="level2">
+<h2 class="anchored" data-anchor-id="faiss">FAISS</h2>
+</section>
+<section id="distância-do-cosseno" class="level2">
+<h2 class="anchored" data-anchor-id="distância-do-cosseno">Distância do Cosseno</h2>
+</section>
+<section id="remoção-de-background" class="level2">
+<h2 class="anchored" data-anchor-id="remoção-de-background">Remoção de Background</h2>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-devlin2019bert" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019. <span>“BERT: Pre-Training of Deep Bidirectional Transformers for Language Understanding.”</span> In <em>Proceedings of the North American Chapter of the Association for Computational Linguistics (NAACL)</em>.
+</div>
+<div id="ref-kolesnikov2020big" class="csl-entry" role="listitem">
+Kolesnikov, Alexander, Lucas Beyer, Xiaohua Zhai, Joan Puigcerver, Jessica Yung, Sylvain Gelly, and Neil Houlsby. 2020. <span>“Big Transfer (BiT): General Visual Representation Learning.”</span> In <em>European Conference on Computer Vision (ECCV)</em>.
+</div>
+<div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017. <span>“Attention Is All You Need.”</span> In <em>Advances in Neural Information Processing Systems (NIPS)</em>.
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,13 +805,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./dataset.html" class="pagination-link" aria-label="Dataset">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span>
+      <a href="./dataset.html" class="pagination-link" aria-label="Base de dados">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Base de dados</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="Referências">
-        <span class="nav-page-text">Referências</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./preprocess.html" class="pagination-link" aria-label="Pré-processamento das Imagens">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pré-processamento das Imagens</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -616,7 +823,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/tutorial.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/Jodavid/similarity_vit_python/edit/main/tutorial.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/Jodavid/similarity_vit_python/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Este material foi criado com <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
