@@ -1,0 +1,498 @@
+---
+#title: "Similaridade de Imagens usando Vision Transformers no python"
+#subtitle: ""
+author: "Jodavid Ferreira"
+institute: "UFPE"
+title-slide-attributes:
+  data-background-image: images/capa.png
+  data-background-size: contain
+  #data-background-opacity: "0.2"
+format:
+  revealjs:
+    slide-number: c/t
+    css: ["css/jodavid.css"]
+    theme: default #dark
+    #footer: images/rodape.png
+    #footer: "Similaridade de Imagens usando Vision Transformers no python - [Jodavid Ferreira](https://jodavid.github.io/)"
+    #logo: "images/logo_capa.png"
+    smaller: True
+    incremental: false
+    transition: concave
+    background-transition: convex
+editor_options: 
+  chunk_output_type: inline
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+
+##  {background-image="images/capa.png" background-opacity="1" background-size="80%"}
+
+<div style= "margin-left: -100px;margin-top: -170px;">
+<img src="images/logo_capa.png" width="500px"/>
+</div>
+
+
+##  {background-image="images/capa_pb.png" background-opacity=".1" background-size="80%"}
+
+
+<br/>
+<br/>
+
+<div style="margin-top:20px">
+<h2 style= "color:#0000fd;">Similaridade de Imagens usando Vision Transformers no python</h2>
+</div>
+
+<br/> <br/>
+<h3>Jodavid Ferreira</h3>
+<h4>Departamento de Estatística</h4>
+<h4>Universidade Federal de Pernambuco</h4>
+
+
+<!---
+
+<br/> <br/> <br/> <br/> <br/>
+
+
+
+![](images/imagem1.jpeg){.absolute bottom="180" right="0" width="700"}
+
+<h2 style="text-align: left"> O que é </h2>
+<h2 style="text-align: left"> Ciência de </h2>
+<h2 style="text-align: left"> Dados? </h2>
+
+--->
+
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+<div style="text-align:center;">
+![](images/montagem_rbras_2025/rect8409_1.png){.fixed height="100%"}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_2.png){.fixed width="90%"}
+
+
+. . .
+
+<div  style="margin-left: 130px; margin-top: -500px;">
+![](images/montagem_rbras_2025/rect8409_0.png){.fixed width="700px"}
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_3.png){.fixed width="100%"}
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_4.png){.fixed width="100%"}
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+
+<hr/>
+
+<br/>
+
+#### Espaço RGB de Cores
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/visao/imagem_rgb.png){.absolute width="450"}
+
+:::
+
+::: {.column width="50%"}
+
+- Um único pixel consiste de
+três componentes que
+variam entre [0,255].
+
+- Cada *pixel* e um vetor:
+
+![](images/visao/vetor_computador.png){.absolute width="550"}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div style="text-align:center; margin: -30px 200px 0px 50px;">
+Vetor-pixel na
+memória do
+computador
+</div>
+
+<div style="text-align:center; margin: -85px 0px 0px 400px;">
+Pixel na
+imagem
+</div>
+
+:::
+
+::::
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/visao/image_original.png){.absolute left=15%  width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Imagem Original</div>
+
+
+![](images/visao/componente_g.png){.absolute left=15% bottom=5% width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Componente - G</div>
+
+:::
+
+::: {.column width="50%"}
+
+![](images/visao/componente_R.png){.absolute right=15% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - R</div>
+
+![](images/visao/componente_b.png){.absolute right=15% bottom=5% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - B</div>
+
+
+:::
+
+::::
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+<br/>
+
+
+**Representação como pontos de um espaço 3D de Cor**
+
+Cores criadas com o vetor cromático R,G,B
+
+![](images/visao/tabela_cores_exemplo.png)
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+$$
+C=r\color{red}R+g\color{green}G+b\color{blue}B
+$$
+
+onde $\color{red}R$, $\color{green}G$ e $\color{blue}B$ são as cores primarias e $r$, $g$ e $b$ os coeficientes da mistura.
+
+- Em geral define-se em três como o número de cores primarias em um espaço,
+devido ao fato do olho humano possuírem três tipos de fotorreceptores.
+
+- A partir destas cores primarias, é possível gerar todas as outras cores do espaço.
+
+Entretanto, existem outras formas de representar cores, como o espaço CMYK.
+
+- O padrão RGB tem síntese aditiva, e é conhecido como cor luz, pois quando as três cores são sobrepostas formam o branco. Já o CMY tem síntese substrativa (também conhecido como pigmento), pois quando sobrepostas, as três cores formam a cor preto (K).
+  
+  - Que são as cores que são utilizadas em impressoras.
+
+. . .
+
+<div  style="margin-left: 130px; margin-top: -500px;">
+![](images/visao/cmyk-and_rgb.webp)
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br/>
+
+#### Um pouco de história
+
+- O **ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)** era uma competição anual de reconhecimento visual em larga escala, que começou em 2010-2017. A competição era baseada no banco de dados ImageNet, que contém milhões de imagens anotadas em milhares de categorias.
+
+- Em 2012, a equipe da Universidade de Toronto, liderada por Alex Krizhevsky, Ilya Sutskever e Geoffrey Hinton, desenvolveu uma CNN chamada **AlexNet** ([paper](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)), que obteve uma precisão de erro de 16,4%, superando significativamente os métodos tradicionais e significativamente melhor que o segundo colocado do mesmo ano, que teve uma taxa de erro de 26,2%.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+![](images/cnn/arquitetura_cnn.png){.fixed width=60%}
+
+-  A Figura acima mostra uma arquitetura típica de uma rede neural convolucional que contém uma camada de entrada, camadas convolucionais, camadas de pooling (subamostragem, ou down sampling), camadas de ativação, camadas totalmente conectadas e uma camada de saída.
+
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br/>
+
+![](images/cnn/top_five_imagenet.png){.fixed width=60%}
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br>
+
+- As Redes Neurais Convolucionais (CNNs) continuaram atraindo a atenção após vencerem o Desafio ImageNet até o ano de 2017.
+
+- Existiam 50.000 imagens coloridas de alta resolução em 1.000 categorias;
+
+- O treinamento com 1,2 milhão de imagens;
+
+- Em 2017, a SENet (<https://arxiv.org/abs/1709.01507>) alcançou uma taxa de erro de 2,3% em 2017.
+
+<div style="text-align:center; margin-top:-70px;">
+![](images/cnn/CNN.gif){.fixed }
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
+
+<hr/>
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+- *Tokens* e *Embeddings* são a base dos modelos baseados em atenção e *transformers*.
+
+. . .
+
+A **tokenização** é o processo de pegar o texto e transformar as sequências de entrada para números.
+
+  - é um mapeamento direto de *palavras* para números, a mesma palavra vai receber o mesmo *token* (pode ser modelado, mas rapidamente se torna muito grande).
+  - os *tokens* geralmente são palavras, mas também podem ser frases, sinais de pontuação ou até caracteres individuais.
+  - A tokenização é o primeiro passo no processamento de linguagem natural (NLP) e é essencial para a pré-processamento de texto.
+  - ela ajuda a preparar os dados textuais para análise, tornando-os mais estruturados e fáceis de trabalhar.
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+
+![](images/token2.webp){style="margin: 0 0 0 300px; width: 500px; height: auto;"}
+
+
+Apesar da referẽncia, palavras grandes podem ser divididas em *subtokens* menores, sendo assim, em 1.000 tokens de palavras em português correspondem aproximadamente a 700 a 750 palavras do nosso idioma.
+
+Essa contagem de palavras em um texto pode variar bastante dependendo da linguagem, do tamanho das palavras e do uso de pontuações.
+
+::: {style="align-items: center;"}
+![](images/token_embeddings.gif){style="margin: 0 0 0 300px; width: 500px; height: auto;"}
+:::
+
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+
+   - *Embeddings* são vetores numéricos obtidos dos *tokens* e representam palavras, frases ou documentos.
+
+- Os *embeddings* é o processo de transformar o mapeamento do vetor de texto de entrada na matriz de embeddings^[Alguns modelos já incorporam o processo de tokenização.].
+
+- Os *embeddings* faz uma representação mais rica do relacionamento entre os tokens (pode limitar o tamanho e pode ser aprendida).
+
+- Os *embeddings* conseguem capturar a estrutura semântica das palavras ou frases e suas relações no texto.
+
+- Atualmente, elas são criadas usando técnicas de *machine learning*, como Word2Vec ou GloVe e *deep learning*, como BERT, GPT-3, e os modelos mais atuais de LLMs.
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+
+![](images/embedd2.webp)
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+- As *word embeddings* transformam os valores inteiros únicos obtidos a partir do tokenizador em um array $n$-dimensional.
+
+- Por exemplo, a palavra 'gato' pode ter o valor '20' a partir do tokenizador, mas a camada de *embedding*  utilizará todas as palavras no seu vocabulário associadas a 'gato' para construir o vetor de *embeddings*. Ela encontra "dimensões" ou características, como "ser vivo", "felino", "humano", "gênero", etc.
+
+
+- Assim, a palavra 'gato' terá valores diferentes para cada dimensão/característica.
+
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+![](images/word-embeddings.png){style="margin: 0 0 0 0; width:1550px;"}
+
+:::
+
+::::
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+Detalhes importantes:
+
+Similaridade do Cosseno ($Sim_{cos}$):
+
+- Maior valor (próximo de 1): Maior similaridade.
+- Menor valor (próximo de -1): Maior dissimilaridade.
+
+Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
+
+- Maior valor (próximo de 2): Maior dissimilaridade.
+- Menor valor (próximo de 0): Maior similaridade.
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+<br/>
+
+![](images/simi_eq.png){style="margin: 0 0 0 0; width:550px;"}
+<br/>
+
+![](images/Cosine-similarity.jpg){style="margin: 0 0 0 0; width:550px;"}
+
+:::
+
+::::
+
+
+
+
+------------------------------------------------------------------------
+
+<br/> <br/>
+
+<hr/>
+
+<h1 style="text-align: center;">
+
+OBRIGADO!
+
+</h1>
+
+<hr/>
+
+::: {style="text-align: center"}
+Slide produzido com [quarto](https://quarto.org/)
+:::
+
+<br/> <br/> <br/> <br/> <br/> <br/> <br/>

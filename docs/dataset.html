@@ -181,12 +181,29 @@ window.Quarto = {
  <span class="menu-text">Base de dados</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preprocess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pré-processamento das Imagens</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./similaridade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Similaridade das Imagens</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -237,10 +254,10 @@ window.Quarto = {
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="Figura1.png" class="img-fluid figure-img"></p>
-<figcaption>Exemplos de imagens existentes na base de dados utilizada.</figcaption>
+<figcaption>Figura1: Exemplos de imagens existentes na base de dados utilizada.</figcaption>
 </figure>
 </div>
-<p>A Figura accima mostra algumas imagens do conjunto de dados. As imagens para compor <em>Natural Images</em> foram obtidas nos seguintes locais:</p>
+<p>A Figura 1 acima mostra algumas imagens do conjunto de dados. As imagens para compor <em>Natural Images</em> foram obtidas nos seguintes locais:</p>
 <ul>
 <li>Imagens de aviões foram obtidas de <a href="http://host.robots.ox.ac.uk/pascal/VOC" class="uri">http://host.robots.ox.ac.uk/pascal/VOC</a></li>
 <li>Imagens de carro foram obtidas de <a href="https://ai.stanford.edu/~jkrause/cars/car_dataset.html" class="uri">https://ai.stanford.edu/~jkrause/cars/car_dataset.html</a></li>

@@ -11,13 +11,14 @@ book:
   sidebar:
     logo: artigo-imagem-1.png
     title: "ViT com Python"
+    text: "abc12"
 
   page-footer:
     left: |
-      Similaridade de Imagens usando Vision Transformers no python foi escrito
-       por Jodavid Ferreira.
+      Agradecimento a <img src="facepe.png" width="30px">FACEPE pelo apoio financeiro.
     right: |
-      Este material foi criado com <a href="https://quarto.org/">Quarto</a>.
+      Este material foi criado com <a href="https://quarto.org/">Quarto</a> escrito
+       por <a href="https://jodavid.github.io">Jodavid Ferreira</a>.
 
   # cover-image: cover.jpg
   favicon: artigo-imagem-1.png

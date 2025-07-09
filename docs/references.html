@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./tutorial.html" rel="prev">
-<link href="./cover.jpg" rel="icon" type="image/jpeg">
+<link href="./similaridade.html" rel="prev">
+<link href="./artigo-imagem-1.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./altair-hist.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./artigo-imagem-1.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ViT com Python</a> 
@@ -147,15 +147,32 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./dataset.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Dataset</span></span></a>
+ <span class="menu-text">Base de dados</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tutorial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tutorial.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span></a>
+  <a href="./preprocess.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Pré-processamento das Imagens</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./similaridade.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Similaridade das Imagens</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link active">
@@ -193,16 +210,49 @@ div.csl-indent {
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-deng2009imagenet" class="csl-entry" role="listitem">
+Deng, Jia, Wei Dong, Richard Socher, Li-Jia Li, Kai Li, and Li Fei-Fei.
+2009. <span>“Imagenet: A Large-Scale Hierarchical Image
+Database.”</span> In <em>2009 IEEE Conference on Computer Vision and
+Pattern Recognition</em>, 248–55. Ieee.
+</div>
+<div id="ref-devlin2019bert" class="csl-entry" role="listitem">
+Devlin, Jacob, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2019.
+<span>“BERT: Pre-Training of Deep Bidirectional Transformers for
+Language Understanding.”</span> In <em>Proceedings of the North American
+Chapter of the Association for Computational Linguistics (NAACL)</em>.
+</div>
 <div id="ref-dosovitskiy2020image" class="csl-entry" role="listitem">
 Dosovitskiy, Alexey, Lucas Beyer, Alexander Kolesnikov, Dirk
 Weissenborn, Xiaohua Zhai, Thomas Unterthiner, Mostafa Dehghani, et al.
 2020. <span>“An Image Is Worth 16x16 Words: Transformers for Image
 Recognition at Scale.”</span> <em>arXiv Preprint arXiv:2010.11929</em>.
 </div>
+<div id="ref-kolesnikov2020big" class="csl-entry" role="listitem">
+Kolesnikov, Alexander, Lucas Beyer, Xiaohua Zhai, Joan Puigcerver,
+Jessica Yung, Sylvain Gelly, and Neil Houlsby. 2020. <span>“Big Transfer
+(BiT): General Visual Representation Learning.”</span> In <em>European
+Conference on Computer Vision (ECCV)</em>.
+</div>
+<div id="ref-krizhevsky2009learning" class="csl-entry" role="listitem">
+Krizhevsky, Alex, Geoffrey Hinton, et al. 2009. <span>“Learning Multiple
+Layers of Features from Tiny Images.”</span>
+</div>
 <div id="ref-roy2018effects" class="csl-entry" role="listitem">
 Roy, Prasun, Subhankar Ghosh, Saumik Bhattacharya, and Umapada Pal.
 2018. <span>“Effects of Degradations on Deep Neural Network
 Architectures.”</span> <em>arXiv Preprint arXiv:1807.10108</em>.
+</div>
+<div id="ref-sabour2017dynamic" class="csl-entry" role="listitem">
+Sabour, Sara, Nicholas Frosst, and Geoffrey E Hinton. 2017.
+<span>“Dynamic Routing Between Capsules.”</span> <em>Advances in Neural
+Information Processing Systems</em> 30.
+</div>
+<div id="ref-vaswani2017attention" class="csl-entry" role="listitem">
+Vaswani, Ashish, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion
+Jones, Aidan N Gomez, Łukasz Kaiser, and Illia Polosukhin. 2017.
+<span>“Attention Is All You Need.”</span> In <em>Advances in Neural
+Information Processing Systems (NIPS)</em>.
 </div>
 </div>
 
@@ -628,8 +678,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./tutorial.html" class="pagination-link" aria-label="Tutorial">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Tutorial</span></span>
+      <a href="./similaridade.html" class="pagination-link" aria-label="Similaridade das Imagens">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Similaridade das Imagens</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
