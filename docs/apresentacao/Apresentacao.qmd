@@ -67,6 +67,52 @@ editor:
 
 
 ## 
+<h2 style= "color:#0000fd;">Início</h2>
+<hr/>
+<br/>
+
+- Maio/2024;
+- Enchente no Rio Grande do Sul;
+
+. . .
+
+<div style="text-align:left;">
+![](images/RioGrandedoSul.jpg){.fixed width=500px}
+</div>
+
+. . .
+
+<div style="text-align:right; margin-top:-500px; margin-right:10px;">
+- Muitas pessoas desabrigadas;
+- Muitos animais perdidos de seus donos;
+</div>
+
+. . .
+
+<div style="text-align:right;">
+![](images/Cachorro-enchente.jpg){.fixed width=500px}
+</div>
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+<div style="text-align:center;">
+![](images/scraping.png){.fixed width="900px"}
+<h3> Fazer Scraping de Imagens</h3>
+</div>
+
+
+
+---
+
+
+## 
 <h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
 <hr/>
 
@@ -107,6 +153,70 @@ editor:
 <hr/>
 
 ![](images/montagem_rbras_2025/rect8409_4.png){.fixed width="100%"}
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Desafio com as imagens</h2>
+
+<hr/>
+
+<br/>
+
+<div style="text-align:center;">
+:::: {.columns}
+
+::: {.column width="48%"}
+![](images/gato3.jpeg){.fixed width="500"}
+:::
+
+::: {.column width="48%"}
+![](images/gato4.jpeg){.fixed width="500"}
+:::
+
+::::
+</div>
+
+<h3 style="text-align:center; color:red;"> Como posso garantir que nessas duas imagens estão o mesmo animal?</h3>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/visao/image_original.png){.absolute left=15%  width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Imagem Original</div>
+
+
+![](images/visao/componente_g.png){.absolute left=15% bottom=5% width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Componente - G</div>
+
+:::
+
+::: {.column width="50%"}
+
+![](images/visao/componente_R.png){.absolute right=15% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - R</div>
+
+![](images/visao/componente_b.png){.absolute right=15% bottom=5% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - B</div>
+
+
+:::
+
+::::
+
+
 
 
 ---
@@ -164,41 +274,6 @@ imagem
 
 ---
 
-## 
-<h2 style= "color:#0000fd;">Imagens digitais</h2>
-
-<hr/>
-
-<br/>
-
-:::: {.columns}
-
-::: {.column width="50%"}
-
-![](images/visao/image_original.png){.absolute left=15%  width="300"}
-<div style="margin-left: 200px; margin-top: 230px;">Imagem Original</div>
-
-
-![](images/visao/componente_g.png){.absolute left=15% bottom=5% width="300"}
-<div style="margin-left: 200px; margin-top: 230px;">Componente - G</div>
-
-:::
-
-::: {.column width="50%"}
-
-![](images/visao/componente_R.png){.absolute right=15% width="300"}
-<div style="margin-left: 130px; margin-top: 230px;">Componente - R</div>
-
-![](images/visao/componente_b.png){.absolute right=15% bottom=5% width="300"}
-<div style="margin-left: 130px; margin-top: 230px;">Componente - B</div>
-
-
-:::
-
-::::
-
-
----
 
 ## 
 <h2 style= "color:#0000fd;">Imagens digitais</h2>
@@ -207,31 +282,28 @@ imagem
 
 <br/>
 
-
-**Representação como pontos de um espaço 3D de Cor**
-
-Cores criadas com o vetor cromático R,G,B
-
-![](images/visao/tabela_cores_exemplo.png)
-
-
----
-
-## 
-<h2 style= "color:#0000fd;">Imagens digitais</h2>
-
-<hr/>
-
-$$
-C=r\color{red}R+g\color{green}G+b\color{blue}B
-$$
-
-onde $\color{red}R$, $\color{green}G$ e $\color{blue}B$ são as cores primarias e $r$, $g$ e $b$ os coeficientes da mistura.
 
 - Em geral define-se em três como o número de cores primarias em um espaço,
 devido ao fato do olho humano possuírem três tipos de fotorreceptores.
 
 - A partir destas cores primarias, é possível gerar todas as outras cores do espaço.
+
+
+**Representação como pontos de um espaço 3D de Cor**
+
+Cores criadas com o vetor R,G,B
+
+<div style="text-align:center;">
+![](images/visao/tabela_cores_exemplo.png){.fixed width="400px"}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
 
 Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 
@@ -241,9 +313,26 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 
 . . .
 
-<div  style="margin-left: 130px; margin-top: -500px;">
+<div  style="margin-left: 130px; margin-top: -150px;">
 ![](images/visao/cmyk-and_rgb.webp)
 </div>
+
+---
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<hr/>
+<h2 style= "text-align:center; color:#0000fd;">Processamento de Imagens com </h2>
+<h2 style= "text-align:center;  color:#0000fd;">*Deep Learning*</h2>
+<hr/>
+
+<br/>
+
 
 ---
 
@@ -256,9 +345,64 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 
 #### Um pouco de história
 
-- O **ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)** era uma competição anual de reconhecimento visual em larga escala, que começou em 2010-2017. A competição era baseada no banco de dados ImageNet, que contém milhões de imagens anotadas em milhares de categorias.
+- O **ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)** era uma competição anual de reconhecimento visual em larga escala, que começou em 2010 e ocorreu até 2017. A competição era baseada no banco de dados ImageNet, que contém milhões de imagens anotadas em milhares de categorias.
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+<div style="text-align:center;">
+![Fonte: https://cs.stanford.edu/people/karpathy/cnnembed/](images/ImageNet.jpg){.fixed width=35%}
+</div>
+
+:::
+::: {.column width="40%"}
+
+- O dataset ImageNet contém 14.197.122 imagens rotuladas, com 20.000 categorias de objetos, sendo que cada categoria contém pelo menos 500 imagens.
+:::
+::::
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br/>
+
+#### Um pouco de história
+
 
 - Em 2012, a equipe da Universidade de Toronto, liderada por Alex Krizhevsky, Ilya Sutskever e Geoffrey Hinton, desenvolveu uma CNN chamada **AlexNet** ([paper](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)), que obteve uma precisão de erro de 16,4%, superando significativamente os métodos tradicionais e significativamente melhor que o segundo colocado do mesmo ano, que teve uma taxa de erro de 26,2%.
+
+<div style="text-align:center; margin-top: -50px;">
+![](images/cnn/CNN.gif){.fixed width=55%}
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br>
+
+- As Redes Neurais Convolucionais (CNNs) continuaram atraindo a atenção após vencerem o Desafio ImageNet até o ano de 2017.
+
+<!-- - Existiam 50.000 imagens coloridas de alta resolução em 1.000 categorias;
+
+- O treinamento com 1,2 milhão de imagens; -->
+
+- Em 2017, a SENet (<https://arxiv.org/abs/1709.01507>) alcançou uma taxa de erro de 2,3% em 2017.
+
+
+<div style="text-align:center;">
+![](images/cnn/top_five_imagenet.png){.fixed width=65%}
+</div>
 
 
 ---
@@ -273,7 +417,7 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 -  A Figura acima mostra uma arquitetura típica de uma rede neural convolucional que contém uma camada de entrada, camadas convolucionais, camadas de pooling (subamostragem, ou down sampling), camadas de ativação, camadas totalmente conectadas e uma camada de saída.
 
 
-
+<!-- 
 ---
 
 ## 
@@ -283,29 +427,8 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 
 <br/>
 
-![](images/cnn/top_five_imagenet.png){.fixed width=60%}
+ -->
 
-
----
-
-## 
-<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
-
-<hr/>
-
-<br>
-
-- As Redes Neurais Convolucionais (CNNs) continuaram atraindo a atenção após vencerem o Desafio ImageNet até o ano de 2017.
-
-- Existiam 50.000 imagens coloridas de alta resolução em 1.000 categorias;
-
-- O treinamento com 1,2 milhão de imagens;
-
-- Em 2017, a SENet (<https://arxiv.org/abs/1709.01507>) alcançou uma taxa de erro de 2,3% em 2017.
-
-<div style="text-align:center; margin-top:-70px;">
-![](images/cnn/CNN.gif){.fixed }
-</div>
 
 
 ---
@@ -314,7 +437,21 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 <h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
 
 <hr/>
+<br/>
 
+- **Junho/2021:** Autores da Google Research publicaram o artigo "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale" ([paper](https://arxiv.org/abs/2010.11929)).
+
+- Segundo os autores, inspirados pelos sucessos do escalonamento de Transformers em NLP (Processamento de Linguagem Natural), experimentaram aplicar um Transformer padrão diretamente às imagens, com o mínimo de modificações possível.
+
+<!-- Para isso, dividimos uma imagem em patches e fornecemos a sequência de embeddings lineares desses patches como entrada para um Transformer. Patches de imagem são tratados da mesma forma que tokens (palavras) em uma aplicação de NLP. Treinamos
+o modelo em classificação de imagens de forma supervisionada. -->
+
+
+<div style="text-align:center;">
+![](images/arquiteturaViT.png){.fixed width=50%}
+</div>
+
+<!-- Figura 1: Visão geral do modelo. Dividimos uma imagem em fragmentos de tamanho fixo, incorporamos linearmente cada um deles, adicionamos embeddings de posição e alimentamos a sequência de vetores resultante em um codificador Transformer padrão. Para realizar a classificação, usamos a abordagem padrão de adicionar um "token de classificação" extra aprendível à sequência. A ilustração do codificador Transformer foi inspirada em Vaswani et al. -->
 
 ---
 
@@ -328,12 +465,12 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 
 . . .
 
-A **tokenização** é o processo de pegar o texto e transformar as sequências de entrada para números.
+No contexto textual, a **tokenização** é o processo de pegar o texto e transformar as sequências de entrada em representação numérica.
 
-  - é um mapeamento direto de *palavras* para números, a mesma palavra vai receber o mesmo *token* (pode ser modelado, mas rapidamente se torna muito grande).
+  - é um mapeamento direto de *palavras* para números, uma mesma palavra vai receber o mesmo *token* (pode ser modelado, mas rapidamente se torna muito grande).
   - os *tokens* geralmente são palavras, mas também podem ser frases, sinais de pontuação ou até caracteres individuais.
   - A tokenização é o primeiro passo no processamento de linguagem natural (NLP) e é essencial para a pré-processamento de texto.
-  - ela ajuda a preparar os dados textuais para análise, tornando-os mais estruturados e fáceis de trabalhar.
+  - ela ajuda a preparar os dados textuais para análise, tornando-os mais estruturados.
 
 ---
 
@@ -343,15 +480,15 @@ A **tokenização** é o processo de pegar o texto e transformar as sequências 
 <hr/>
 
 
-![](images/token2.webp){style="margin: 0 0 0 300px; width: 500px; height: auto;"}
+![](images/token2.webp){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
 
 
-Apesar da referẽncia, palavras grandes podem ser divididas em *subtokens* menores, sendo assim, em 1.000 tokens de palavras em português correspondem aproximadamente a 700 a 750 palavras do nosso idioma.
+Apesar da referência, palavras grandes podem ser divididas em *subtokens* menores, sendo assim, em 1.000 tokens de palavras em português correspondem aproximadamente a aproximadamente 700 a 750 palavras do nosso idioma.
 
-Essa contagem de palavras em um texto pode variar bastante dependendo da linguagem, do tamanho das palavras e do uso de pontuações.
+Essa contagem de palavras em um texto pode variar dependendo da linguagem, do tamanho das palavras e do uso de pontuações.
 
 ::: {style="align-items: center;"}
-![](images/token_embeddings.gif){style="margin: 0 0 0 300px; width: 500px; height: auto;"}
+![](images/token_embeddings.gif){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
 :::
 
 
@@ -366,14 +503,15 @@ Essa contagem de palavras em um texto pode variar bastante dependendo da linguag
 
    - *Embeddings* são vetores numéricos obtidos dos *tokens* e representam palavras, frases ou documentos.
 
-- Os *embeddings* é o processo de transformar o mapeamento do vetor de texto de entrada na matriz de embeddings^[Alguns modelos já incorporam o processo de tokenização.].
+- Os *embeddings* é o processo de transformar o mapeamento do vetor de texto de entrada em uma representação matricial^[Alguns modelos já incorporam o processo de tokenização.].
 
-- Os *embeddings* faz uma representação mais rica do relacionamento entre os tokens (pode limitar o tamanho e pode ser aprendida).
+- Os *embeddings* possuem uma melhor representação do relacionamento entre os tokens.
 
 - Os *embeddings* conseguem capturar a estrutura semântica das palavras ou frases e suas relações no texto.
 
 - Atualmente, elas são criadas usando técnicas de *machine learning*, como Word2Vec ou GloVe e *deep learning*, como BERT, GPT-3, e os modelos mais atuais de LLMs.
 
+<!-- 
 ---
 
 
@@ -385,45 +523,149 @@ Essa contagem de palavras em um texto pode variar bastante dependendo da linguag
 
 ![](images/embedd2.webp)
 
+--- -->
 
----
 
 ## 
-<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+<h2 style= "color:#0000fd;"> ViT: Uma ideia inspirada no BERT</h2>
 
 <hr/>
+<br/>
+
+O **Vision Transformer (ViT)** aplica uma ideia originalmente desenvolvida para **texto** — o **BERT** — no mundo da **visão computacional**.
 
 <br/>
 
-:::: {.columns}
+Ambos os modelos usam o mesmo conceito central:  
+- **"Compreender partes (tokens ou patches) em relação ao todo usando atenção."**
 
-::: {.column width="50%"}
+. . .
 
-<div style="font-size:18pt">
+<br/>
 
-- As *word embeddings* transformam os valores inteiros únicos obtidos a partir do tokenizador em um array $n$-dimensional.
+<h3  style= "color:#0000fd;">  O que é o BERT?</h3>
 
-- Por exemplo, a palavra 'gato' pode ter o valor '20' a partir do tokenizador, mas a camada de *embedding*  utilizará todas as palavras no seu vocabulário associadas a 'gato' para construir o vetor de *embeddings*. Ela encontra "dimensões" ou características, como "ser vivo", "felino", "humano", "gênero", etc.
-
-
-- Assim, a palavra 'gato' terá valores diferentes para cada dimensão/característica.
+**BERT** (*Bidirectional Encoder Representations from Transformers*) é um modelo de linguagem criado pela [Google (2018)](https://research.google/blog/open-sourcing-bert-state-of-the-art-pre-training-for-natural-language-processing/) para **compreender texto com base no contexto completo**.
 
 
+---
 
-</div>
+## 
+<h2 style= "color:#0000fd;">BERT</h2>
 
-:::
+<hr/>
+<br/>
 
-::: {.column width="3%"}
-:::
+- o BERT **olha para toda a frase ao mesmo tempo** (bidirecionalidade)
+  - ao contrário de modelos que leem da **esquerda para a direita**, 
 
-::: {.column width="47%"}
+- Isso permite entender o **significado exato de uma palavra**, considerando tudo o que está antes **e depois** dela.
 
-![](images/word-embeddings.png){style="margin: 0 0 0 0; width:1550px;"}
+  - Frase 1: "*Ele sentou no banco para descansar.*"  
+  - Frase 2: "*Ele foi ao banco sacar dinheiro.*"
 
-:::
+- Mesmo a palavra **"banco"** sendo igual, o significado muda.  
 
-::::
+- O BERT entende isso porque ele **considera todas as palavras da frase ao mesmo tempo**.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Como o BERT funciona internamente?</h2>
+
+<hr/>
+<br/>
+
+O BERT é baseado no **Encoder do Transformer**. Ele utiliza:
+
+<br/>
+
+
+- **Tokenização**: cada palavra vira um token.
+- **Embeddings**: os tokens viram vetores numéricos.
+- **Atenção (Self-Attention)**: calcula o quanto cada palavra influencia as outras.
+- **Tarefa de treino**: *Masked Language Modeling (MLM)*, onde uma palavra é escondida e o modelo precisa prever qual é.
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> A ideia central: tokens + atenção</h2>
+
+<hr/>
+<br/>
+
+> "Vamos representar uma sequência de unidades (tokens, patches) como vetores e deixar o modelo **aprender relações entre elas com autoatenção**."
+
+<br/>
+
+
+Essa ideia permite que o modelo **reconheça padrões globais**, não apenas locais.
+
+<br/>
+
+
+O ViT **usa exatamente essa mesma lógica**, mas com **imagens** em vez de texto.
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> ViT e BERT</h2>
+
+<hr/>
+<br/>
+
+| Etapa                   | BERT (Texto)                      | ViT (Imagem)                      |
+|-------------------------|------------------------------------|-----------------------------------|
+| Entrada                 | Sequência de palavras (tokens)     | Patches da imagem (ex: 16×16 px)  |
+| Embedding               | Vetor para cada palavra            | Vetor para cada patch             |
+| Posição                 | Embedding de posição adicionado    | Embedding de posição adicionado   |
+| Processamento           | Transformer Encoder (atenção)      | Transformer Encoder (atenção)     |
+| Pré-treinamento         | Prever palavras (MLM)              | Prever patches (Masked Patch)     |
+| Saída                   | Tarefa textual                     | Tarefa visual (ex: classificação) |
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> ViT aplicado às imagens?</h2>
+
+<hr/>
+<br/>
+
+O **ViT** (Vision Transformer) transforma uma imagem da seguinte forma:
+
+<br/>
+
+1. **Divide a imagem em pequenos blocos** (patches), como se fossem palavras visuais.
+2. Cada patch é **transformado em um vetor** (embedding), como o BERT faz com palavras.
+3. Esses vetores são alimentados em um **Transformer Encoder**, com camadas de atenção.
+4. O modelo aprende a **relacionar todas as partes da imagem** para tomar decisões (ex: classificar, segmentar).
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> ViT aplicado às imagens?</h2>
+
+<hr/>
+<br/>
+
+O **ViT** (Vision Transformer) transforma uma imagem da seguinte forma:
+
+<br/>
+
+<span style="color:red;">
+1. **Divide a imagem em pequenos blocos** (patches), como se fossem palavras visuais.
+</span>
+
+<span style="color:red;">
+2. Cada patch é **transformado em um vetor** (embedding), como o BERT faz com palavras.
+</span>
+
+3. Esses vetores são alimentados em um **Transformer Encoder**, com camadas de atenção.
+4. O modelo aprende a **relacionar todas as partes da imagem** para tomar decisões (ex: classificar, segmentar).
 
 
 
@@ -431,7 +673,31 @@ Essa contagem de palavras em um texto pode variar bastante dependendo da linguag
 
 
 ## 
-<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+<h2 style= "color:#0000fd;">FAISS</h2>
+
+<hr/>
+<br/>
+
+> **FAISS (Facebook AI Similarity Search)** é uma biblioteca criada pelo Facebook AI para fazer **buscas eficientes em grandes conjuntos de vetores** (como *embeddings*).
+
+. . .
+
+<h3 style= "color:#0000fd;">Para que serve?</h3>
+
+Quando você tem **milhões de vetores** (ex: gerados por BERT ou ViT), precisa encontrar **os mais próximos** (similaridade). 
+
+Isso é comum em tarefas como:
+
+- Busca semântica (texto/imagem semelhante)
+- Recuperação de imagens por conteúdo
+- Sistemas de recomendação baseados em embeddings
+<!-- - Deduplicação ou clustering rápido -->
+
+
+<!-- ---
+
+## 
+<h2 style= "color:#0000fd;">Distância do Cosseno</h2>
 
 <hr/>
 
@@ -475,6 +741,122 @@ Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
 ::::
 
 
+--- -->
+
+
+
+## 
+<h2 style= "color:#0000fd;">k-NN - vizinhos mais próximos</h2>
+<h4 style= "color:#0000fd;">usando similaridade do cosseno</h4>
+<hr/>
+
+- Quando trabalhamos com **embeddings** (vetores que representam texto, imagem, etc), uma tarefa comum é encontrar os **k vetores mais semelhantes** a um vetor consulta.
+
+<br/>
+
+<h4 style= "color:#0000fd;">O que é a similaridade do cosseno?</h4>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+- Mede o **ângulo** entre dois vetores.
+
+Detalhes importantes:
+
+Similaridade do Cosseno ($Sim_{cos}$):
+
+- Maior valor (próximo de 1): Maior similaridade.
+- Menor valor (próximo de -1): Maior dissimilaridade.
+
+<!-- Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
+
+- Maior valor (próximo de 2): Maior dissimilaridade.
+- Menor valor (próximo de 0): Maior similaridade. -->
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+<br/>
+
+![](images/simi_eq.png){style="margin: -100px 0 0 0; width:550px;"}
+<br/>
+
+![](images/Cosine-similarity.jpg){style="margin: 0 0 0 0; width:550px;"}
+
+:::
+
+::::
+
+---
+
+## 
+<h2 style= "color:#0000fd;">k-NN com similaridade do cosseno</h2>
+<h4 style= "color:#0000fd;">Como funciona?</h4>
+<hr/>
+
+
+1. Dado um vetor consulta, comparamos ele com todos os vetores da base.
+2. Calculamos a similaridade do cosseno entre o vetor consulta e cada vetor da base.
+3. Selecionamos os **k vetores com maior similaridade** (mais próximos).
+
+<br/>
+
+<h4 style= "color:#0000fd;">Por que usar similaridade do cosseno?</h4>
+
+- Embeddings geralmente são normalizados para magnitude 1.
+- A similaridade do cosseno captura melhor a **orientação** dos vetores, que reflete similaridade semântica, independente do comprimento.
+
+
+<!-- ---
+
+## 
+<h2 style= "color:#0000fd;"> Similaridades das *words*</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+- As *word embeddings* transformam os valores inteiros únicos obtidos a partir do tokenizador em um array $n$-dimensional.
+
+- Por exemplo, a palavra 'gato' pode ter o valor '20' a partir do tokenizador, mas a camada de *embedding*  utilizará todas as palavras no seu vocabulário associadas a 'gato' para construir o vetor de *embeddings*. Ela encontra "dimensões" ou características, como "ser vivo", "felino", "humano", "gênero", etc.
+
+
+- Assim, a palavra 'gato' terá valores diferentes para cada dimensão/característica.
+
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+![](images/word-embeddings.png){style="margin: 0 0 0 0; width:1550px;"}
+
+:::
+
+::::
+
+ -->
 
 
 ------------------------------------------------------------------------
