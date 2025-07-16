@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="Apresentacao_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
   <link rel="stylesheet" href="css/jodavid.css">
@@ -152,6 +217,7 @@ Departamento de Estatística
 <h4>
 Universidade Federal de Pernambuco
 </h4>
+
 <!---
 
 <br/> <br/> <br/> <br/> <br/>
@@ -165,7 +231,7 @@ Universidade Federal de Pernambuco
 <h2 style="text-align: left"> Dados? </h2>
 
 --->
-</section>
+<img data-src="images/logo_ufpe_facepe.png" class="r-stretch"></section>
 <section id="section-2" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
@@ -251,7 +317,7 @@ Ideia neste tutorial
 <section id="section-8" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
-Desafio com as imagens
+Desafio com imagens
 </h2>
 <hr>
 <p><br></p>
@@ -442,18 +508,6 @@ Redes Neurais Convolucionais
 <img data-src="images/cnn/arquitetura_cnn.png" class="fixed r-stretch" style="width:60.0%"><ul>
 <li>A Figura acima mostra uma arquitetura típica de uma rede neural convolucional que contém uma camada de entrada, camadas convolucionais, camadas de pooling (subamostragem, ou down sampling), camadas de ativação, camadas totalmente conectadas e uma camada de saída.</li>
 </ul>
-<!-- 
-
----
-
-## 
-<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
-
-<hr/>
-
-<br/>
-
- -->
 </section>
 <section id="section-17" class="slide level2">
 <h2></h2>
@@ -471,9 +525,25 @@ o modelo em classificação de imagens de forma supervisionada. -->
 <div style="text-align:center;">
 <p><img data-src="images/arquiteturaViT.png" class="fixed" style="width:50.0%"></p>
 </div>
-<!-- Figura 1: Visão geral do modelo. Dividimos uma imagem em fragmentos de tamanho fixo, incorporamos linearmente cada um deles, adicionamos embeddings de posição e alimentamos a sequência de vetores resultante em um codificador Transformer padrão. Para realizar a classificação, usamos a abordagem padrão de adicionar um "token de classificação" extra aprendível à sequência. A ilustração do codificador Transformer foi inspirada em Vaswani et al. -->
 </section>
 <section id="section-18" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+ViT - Visual Transformers
+</h2>
+<hr>
+<p><br></p>
+<div style="text-align:center;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/ch13-fig04.png" class="fixed" style="width:80.0%"></p>
+<figcaption>Como um vision transformer opera sobre os patches das imagens.</figcaption>
+</figure>
+</div>
+</div>
+<!-- Figura 1: Visão geral do modelo. Dividimos uma imagem em fragmentos de tamanho fixo, incorporamos linearmente cada um deles, adicionamos embeddings de posição e alimentamos a sequência de vetores resultante em um codificador Transformer padrão. Para realizar a classificação, usamos a abordagem padrão de adicionar um "token de classificação" extra aprendível à sequência. A ilustração do codificador Transformer foi inspirada em Vaswani et al. -->
+</section>
+<section id="section-19" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 Tokens e Embeddings
@@ -492,7 +562,7 @@ Tokens e Embeddings
 </ul>
 </div>
 </section>
-<section id="section-19" class="slide level2">
+<section id="section-20" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 Tokens e Embeddings
@@ -505,12 +575,13 @@ Tokens e Embeddings
 <p><img data-src="images/token_embeddings.gif" style="margin: 0 0 0 300px; width: 450px; height: auto;"></p>
 </div>
 </section>
-<section id="section-20" class="slide level2">
+<section id="section-21" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 Tokens e Embeddings
 </h2>
 <hr>
+<p><br></p>
 <ul>
 <li><p><em>Embeddings</em> são vetores numéricos obtidos dos <em>tokens</em> e representam palavras, frases ou documentos.</p></li>
 <li><p>Os <em>embeddings</em> é o processo de transformar o mapeamento do vetor de texto de entrada em uma representação matricial<sup>1</sup>.</p></li>
@@ -518,9 +589,7 @@ Tokens e Embeddings
 <li><p>Os <em>embeddings</em> conseguem capturar a estrutura semântica das palavras ou frases e suas relações no texto.</p></li>
 <li><p>Atualmente, elas são criadas usando técnicas de <em>machine learning</em>, como Word2Vec ou GloVe e <em>deep learning</em>, como BERT, GPT-3, e os modelos mais atuais de LLMs.</p></li>
 </ul>
-<!-- 
-
----
+<!-- ---
 
 
 ## 
@@ -529,11 +598,24 @@ Tokens e Embeddings
 <hr/>
 
 
-![](images/embedd2.webp)
-
---- -->
+![](images/embedd2.webp) -->
 <aside><ol class="aside-footnotes"><li id="fn1"><p>Alguns modelos já incorporam o processo de tokenização.</p></li></ol></aside></section>
-<section id="section-21" class="slide level2">
+<section id="section-22" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Tokens e Embeddings
+</h2>
+<hr>
+<p><br></p>
+<ul>
+<li><p>Os embeddings podem ter um número maior ou menor de dimensões do que a entrada original. Por exemplo, usando métodos de embedding para expressão extrema, podemos codificar dados em representações bidimensionais densas e contínuas para fins de visualização.</p></li>
+<li><p>Uma propriedade fundamental dos embeddings é que eles codificam distância ou similaridade, ou seja, eles capturam a semântica dos dados de forma que entradas semelhantes estejam próximas no espaço de embeddings.</p></li>
+</ul>
+<div style="text-align:center;">
+<p><img data-src="images/ch01-fig02.png" class="fixed" style="width:50.0%"></p>
+</div>
+</section>
+<section id="section-23" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 ViT: Uma ideia inspirada no BERT
@@ -552,7 +634,7 @@ O que é o BERT?
 <p><strong>BERT</strong> (<em>Bidirectional Encoder Representations from Transformers</em>) é um modelo de linguagem criado pela <a href="https://research.google/blog/open-sourcing-bert-state-of-the-art-pre-training-for-natural-language-processing/">Google (2018)</a> para <strong>compreender texto com base no contexto completo</strong>.</p>
 </div>
 </section>
-<section id="section-22" class="slide level2">
+<section id="section-24" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 BERT
@@ -574,7 +656,7 @@ BERT
 <li><p>O BERT entende isso porque ele <strong>considera todas as palavras da frase ao mesmo tempo</strong>.</p></li>
 </ul>
 </section>
-<section id="section-23" class="slide level2">
+<section id="section-25" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 Como o BERT funciona internamente?
@@ -587,10 +669,10 @@ Como o BERT funciona internamente?
 <li><strong>Tokenização</strong>: cada palavra vira um token.</li>
 <li><strong>Embeddings</strong>: os tokens viram vetores numéricos.</li>
 <li><strong>Atenção (Self-Attention)</strong>: calcula o quanto cada palavra influencia as outras.</li>
-<li><strong>Tarefa de treino</strong>: <em>Masked Language Modeling (MLM)</em>, onde uma palavra é escondida e o modelo precisa prever qual é.</li>
+<li><strong>Tarefa de treino</strong>: <em>Masked Language Modeling (MLM)</em>, onde um percentual de palavras (por exemplo, 15%) são ocultadas e o modelo precisa prever quais são.</li>
 </ul>
 </section>
-<section id="section-24" class="slide level2">
+<section id="section-26" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 A ideia central: tokens + atenção
@@ -605,7 +687,7 @@ A ideia central: tokens + atenção
 <p><br></p>
 <p>O ViT <strong>usa exatamente essa mesma lógica</strong>, mas com <strong>imagens</strong> em vez de texto.</p>
 </section>
-<section id="section-25" class="slide level2">
+<section id="section-27" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 ViT e BERT
@@ -659,7 +741,7 @@ ViT e BERT
 </tbody>
 </table>
 </section>
-<section id="section-26" class="slide level2">
+<section id="section-28" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 ViT aplicado às imagens?
@@ -675,7 +757,7 @@ ViT aplicado às imagens?
 <li>O modelo aprende a <strong>relacionar todas as partes da imagem</strong> para tomar decisões (ex: classificar, segmentar).</li>
 </ol>
 </section>
-<section id="section-27" class="slide level2">
+<section id="section-29" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 ViT aplicado às imagens?
@@ -691,7 +773,7 @@ ViT aplicado às imagens?
 <li>O modelo aprende a <strong>relacionar todas as partes da imagem</strong> para tomar decisões (ex: classificar, segmentar).</li>
 </ol>
 </section>
-<section id="section-28" class="slide level2">
+<section id="section-30" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 FAISS
@@ -762,7 +844,7 @@ Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
 --- -->
 </div>
 </section>
-<section id="section-29" class="slide level2">
+<section id="section-31" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 k-NN - vizinhos mais próximos
@@ -803,7 +885,7 @@ O que é a similaridade do cosseno?
 <p><img data-src="images/Cosine-similarity.jpg" style="margin: 0 0 0 0; width:550px;"></p>
 </div></div>
 </section>
-<section id="section-30" class="slide level2">
+<section id="section-32" class="slide level2">
 <h2></h2>
 <h2 style="color:#0000fd;">
 k-NN com similaridade do cosseno
@@ -825,6 +907,38 @@ Por que usar similaridade do cosseno?
 <li>Embeddings geralmente são normalizados para magnitude 1.</li>
 <li>A similaridade do cosseno captura melhor a <strong>orientação</strong> dos vetores, que reflete similaridade semântica, independente do comprimento.</li>
 </ul>
+</section>
+<section id="section-33" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Vamos ao python?
+</h2>
+<h4 style="color:#0000fd;">
+Como vamos seguir:
+</h4>
+<hr>
+<ol type="1">
+<li><strong>Banco de dados de Imagens:</strong> A base de dados foi nomeada de <strong>Natural Images</strong> e pode ser encontrada no Kaggle e no Github <a href="https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file" class="uri">https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file</a>.</li>
+</ol>
+<div class="fragment">
+<ol start="2" type="1">
+<li><strong>Remover Background:</strong> Vamos remover o fundo das imagens para facilitar na similaridade das imagens.</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="3" type="1">
+<li><strong>Criar Embeddings:</strong> Vamos criar os embeddings das imagens usando o ViT.</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="4" type="1">
+<li><strong>Salvar Embeddings:</strong> Vamos salvar os embeddings em um banco de dados para embeddings (FAISS) para facilitar o uso posterior.</li>
+</ol>
+</div>
+<div class="fragment">
+<ol start="5" type="1">
+<li><strong>Buscar Imagens:</strong> Vamos buscar imagens similares usando a similaridade do cosseno.</li>
+</ol>
 <!-- ---
 
 ## 
@@ -865,6 +979,21 @@ Por que usar similaridade do cosseno?
 ::::
 
  -->
+</div>
+</section>
+<section id="section-34" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Referências
+</h2>
+<hr>
+<p><br></p>
+<ul>
+<li><p>Alexey Dosovitskiy et al., “An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale” (2020). <a href="https://arxiv.org/abs/2010.11929" class="uri">https://arxiv.org/abs/2010.11929</a></p></li>
+<li><p>Raschka, Sebastian. “Machine learning Q and AI: 30 essential questions and answers on machine learning and AI”. No Starch Press, 2024. <a href="https://sebastianraschka.com/books/ml-q-and-ai-chapters/ch01/#table-of-contents" class="uri">https://sebastianraschka.com/books/ml-q-and-ai-chapters/ch01/#table-of-contents</a></p></li>
+<li><p>Johnson, Jeff, Matthijs Douze, and Hervé Jégou. “Billion-scale similarity search with GPUs.” IEEE Transactions on Big Data 7.3 (2019): 535-547. <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8733051" class="uri">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=8733051</a></p></li>
+<li><p>Deng, Jia, et al.&nbsp;“Imagenet: A large-scale hierarchical image database.” 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009. <a href="https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5206848" class="uri">https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&amp;arnumber=5206848</a></p></li>
+</ul>
 </section>
 <section class="slide level2">
 
@@ -877,7 +1006,445 @@ Por que usar similaridade do cosseno?
 <div style="text-align: center">
 <p>Slide produzido com <a href="https://quarto.org/">quarto</a></p>
 </div>
-<p><br> <br> <br> <br> <br> <br> <br></p>
+<p><br> <br></p>
+<div style="text-align:center;">
+<p><img data-src="images/logo_ufpe_facepe.png" class="fixed" style="width:60.0%"></p>
+</div>
+<p><br> <br> <br> <br> <br></p>
+</section>
+<section class="slide level2">
+
+<br> <br> <br> <br> <br> <br>
+<hr>
+<h2 style="color:#0000fd;text-align:center;">
+Código python - Pré-Processamento
+</h2>
+<hr>
+</section>
+<section id="section-35" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p>Aqui estou utilizando um Ambiente Conda para instalar as dependências necessárias, com <code>python 3.10</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Ambiente vit conda</span></span>
+<span id="cb1-2"><a href=""></a>conda activate vit</span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="sc">!</span>pip install faiss<span class="sc">-</span>gpu</span>
+<span id="cb1-5"><a href=""></a><span class="sc">!</span>pip install faiss<span class="sc">-</span>cpu</span>
+<span id="cb1-6"><a href=""></a><span class="sc">!</span>pip install <span class="sc">-</span>r requirements.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lendo as bibliotecas necessárias:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Lendo as bibliotecas</span></span>
+<span id="cb2-2"><a href=""></a>from transformers import ViTImageProcessor, ViTForImageClassification</span>
+<span id="cb2-3"><a href=""></a>from PIL import Image</span>
+<span id="cb2-4"><a href=""></a>import requests</span>
+<span id="cb2-5"><a href=""></a>import os</span>
+<span id="cb2-6"><a href=""></a>import torch</span>
+<span id="cb2-7"><a href=""></a></span>
+<span id="cb2-8"><a href=""></a></span>
+<span id="cb2-9"><a href=""></a>import pandas as pd</span>
+<span id="cb2-10"><a href=""></a>import numpy as np</span>
+<span id="cb2-11"><a href=""></a>import matplotlib.pyplot as plt</span>
+<span id="cb2-12"><a href=""></a></span>
+<span id="cb2-13"><a href=""></a>import faiss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-36" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p>Função para ler imagens de um diretório e retornar em outro diretório pré-determinado as imagens sem background, mas também a função retorna uma lista de imagens com um índice e o caminho original da imagem:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Pre-processar as imagens -</span></span>
+<span id="cb3-2"><a href=""></a><span class="co"># Padronizar as imagens e remover background</span></span>
+<span id="cb3-3"><a href=""></a>import csv</span>
+<span id="cb3-4"><a href=""></a>import os</span>
+<span id="cb3-5"><a href=""></a>from PIL import Image</span>
+<span id="cb3-6"><a href=""></a>from rembg import remove</span>
+<span id="cb3-7"><a href=""></a>import io</span>
+<span id="cb3-8"><a href=""></a></span>
+<span id="cb3-9"><a href=""></a>def <span class="fu">processar_imagens_otimizado</span>(caminho_pasta_entrada, caminho_pasta_saida, <span class="at">largura=</span><span class="dv">640</span>, <span class="at">altura=</span><span class="dv">480</span>)<span class="sc">:</span></span>
+<span id="cb3-10"><a href=""></a>    <span class="co"># (Mesma função processar_imagens_otimizado que você já tem)</span></span>
+<span id="cb3-11"><a href=""></a>    <span class="cf">if</span> not <span class="fu">os.path.exists</span>(caminho_pasta_saida)<span class="sc">:</span></span>
+<span id="cb3-12"><a href=""></a>        <span class="fu">os.makedirs</span>(caminho_pasta_saida)</span>
+<span id="cb3-13"><a href=""></a>        <span class="fu">print</span>(f<span class="st">"Pasta de saída criada: {caminho_pasta_saida}"</span>)</span>
+<span id="cb3-14"><a href=""></a></span>
+<span id="cb3-15"><a href=""></a>    lista_indices_caminhos <span class="ot">=</span> []</span>
+<span id="cb3-16"><a href=""></a>    indice_atual <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb3-17"><a href=""></a></span>
+<span id="cb3-18"><a href=""></a>    <span class="cf">for</span> raiz, _, arquivos <span class="cf">in</span> <span class="fu">os.walk</span>(caminho_pasta_entrada)<span class="sc">:</span></span>
+<span id="cb3-19"><a href=""></a>        <span class="fu">arquivos.sort</span>() <span class="co"># Garante uma ordem consistente</span></span>
+<span id="cb3-20"><a href=""></a>        </span>
+<span id="cb3-21"><a href=""></a>        <span class="cf">for</span> arquivo <span class="cf">in</span> arquivos<span class="sc">:</span></span>
+<span id="cb3-22"><a href=""></a>            <span class="cf">if</span> <span class="fu">arquivo.lower</span>()<span class="fu">.endswith</span>((<span class="st">'.png'</span>, <span class="st">'.jpg'</span>, <span class="st">'.jpeg'</span>, <span class="st">'.webp'</span>, <span class="st">'.bmp'</span>, <span class="st">'.tiff'</span>))<span class="sc">:</span></span>
+<span id="cb3-23"><a href=""></a>                caminho_completo_entrada <span class="ot">=</span> <span class="fu">os.path.join</span>(raiz, arquivo)</span>
+<span id="cb3-24"><a href=""></a>                </span>
+<span id="cb3-25"><a href=""></a>                <span class="fu">lista_indices_caminhos.append</span>({</span>
+<span id="cb3-26"><a href=""></a>                    <span class="st">'indice'</span><span class="sc">:</span> indice_atual,</span>
+<span id="cb3-27"><a href=""></a>                    <span class="st">'caminho_original'</span><span class="sc">:</span> caminho_completo_entrada</span>
+<span id="cb3-28"><a href=""></a>                })</span>
+<span id="cb3-29"><a href=""></a>                indice_atual <span class="sc">+</span><span class="er">=</span> <span class="dv">1</span></span>
+<span id="cb3-30"><a href=""></a></span>
+<span id="cb3-31"><a href=""></a>                nome_arquivo_sem_ext, extensao <span class="ot">=</span> <span class="fu">os.path.splitext</span>(arquivo)</span>
+<span id="cb3-32"><a href=""></a>                extensao_saida <span class="ot">=</span> <span class="st">'.png'</span> <span class="cf">if</span> <span class="fu">extensao.lower</span>() <span class="sc">!=</span> <span class="st">'.png'</span></span>
+<span id="cb3-33"><a href=""></a>                  <span class="cf">else</span> extensao</span>
+<span id="cb3-34"><a href=""></a>                nome_arquivo_saida <span class="ot">=</span> f<span class="st">"{nome_arquivo_sem_ext}_processado{extensao_saida}"</span></span>
+<span id="cb3-35"><a href=""></a>                caminho_completo_saida <span class="ot">=</span> <span class="fu">os.path.join</span>(caminho_pasta_saida, nome_arquivo_saida)</span>
+<span id="cb3-36"><a href=""></a></span>
+<span id="cb3-37"><a href=""></a>                try<span class="sc">:</span></span>
+<span id="cb3-38"><a href=""></a>                    img_original <span class="ot">=</span> <span class="fu">Image.open</span>(caminho_completo_entrada)</span>
+<span id="cb3-39"><a href=""></a>                    img_redimensionada <span class="ot">=</span> <span class="fu">img_original.resize</span>((largura, altura), Image.LANCZOS)</span>
+<span id="cb3-40"><a href=""></a></span>
+<span id="cb3-41"><a href=""></a>                    buffer_img <span class="ot">=</span> <span class="fu">io.BytesIO</span>()</span>
+<span id="cb3-42"><a href=""></a>                    <span class="fu">img_redimensionada.save</span>(buffer_img, <span class="at">format=</span><span class="st">'PNG'</span> <span class="cf">if</span> extensao_saida <span class="sc">==</span> <span class="st">'.png'</span></span>
+<span id="cb3-43"><a href=""></a>                      <span class="cf">else</span> img_original.format)</span>
+<span id="cb3-44"><a href=""></a>                    <span class="fu">buffer_img.seek</span>(<span class="dv">0</span>)</span>
+<span id="cb3-45"><a href=""></a></span>
+<span id="cb3-46"><a href=""></a>                    bytes_entrada <span class="ot">=</span> <span class="fu">buffer_img.read</span>()</span>
+<span id="cb3-47"><a href=""></a>                    bytes_saida <span class="ot">=</span> <span class="fu">remove</span>(bytes_entrada)</span>
+<span id="cb3-48"><a href=""></a></span>
+<span id="cb3-49"><a href=""></a>                    with <span class="fu">open</span>(caminho_completo_saida, <span class="st">'wb'</span>) as o<span class="sc">:</span></span>
+<span id="cb3-50"><a href=""></a>                        <span class="fu">o.write</span>(bytes_saida)</span>
+<span id="cb3-51"><a href=""></a>                    <span class="fu">print</span>(f<span class="st">"Processado e salvo: {caminho_completo_saida}</span></span>
+<span id="cb3-52"><a href=""></a><span class="st">                      (Original: {caminho_completo_entrada})"</span>)</span>
+<span id="cb3-53"><a href=""></a></span>
+<span id="cb3-54"><a href=""></a>                except FileNotFoundError<span class="sc">:</span></span>
+<span id="cb3-55"><a href=""></a>                    <span class="fu">print</span>(f<span class="st">"Erro: Arquivo não encontrado: {caminho_completo_entrada}"</span>)</span>
+<span id="cb3-56"><a href=""></a>                except Exception as e<span class="sc">:</span></span>
+<span id="cb3-57"><a href=""></a>                    <span class="fu">print</span>(f<span class="st">"Erro ao processar {caminho_completo_entrada}: {e}"</span>)</span>
+<span id="cb3-58"><a href=""></a></span>
+<span id="cb3-59"><a href=""></a>    return lista_indices_caminhos</span>
+<span id="cb3-60"><a href=""></a></span>
+<span id="cb3-61"><a href=""></a></span>
+<span id="cb3-62"><a href=""></a></span>
+<span id="cb3-63"><a href=""></a></span>
+<span id="cb3-64"><a href=""></a><span class="co">#    </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-37" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Processando as imagens e salvando os índices em um arquivo CSV:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Padronizar as imagens e remover background</span></span>
+<span id="cb4-2"><a href=""></a>pasta_entrada <span class="ot">=</span> <span class="st">'database/natural_images'</span></span>
+<span id="cb4-3"><a href=""></a>pasta_saida <span class="ot">=</span> <span class="st">'database/natural_images_without_bg'</span></span>
+<span id="cb4-4"><a href=""></a>arquivo_csv_saida <span class="ot">=</span> <span class="st">'database/indices_imagens_preprocessadas.csv'</span></span>
+<span id="cb4-5"><a href=""></a></span>
+<span id="cb4-6"><a href=""></a><span class="co"># Processa as imagens e obtém a lista de índices/caminhos</span></span>
+<span id="cb4-7"><a href=""></a>info_imagens <span class="ot">=</span> <span class="fu">processar_imagens_otimizado</span>(pasta_entrada, pasta_saida,</span>
+<span id="cb4-8"><a href=""></a>  <span class="at">largura=</span><span class="dv">224</span>, <span class="at">altura=</span><span class="dv">224</span>)</span>
+<span id="cb4-9"><a href=""></a><span class="co"># Salvando em CSV a lista de arquivos originais</span></span>
+<span id="cb4-10"><a href=""></a>df <span class="ot">=</span> <span class="fu">pd.DataFrame</span>(info_imagens)</span>
+<span id="cb4-11"><a href=""></a><span class="co"># index=False para não salvar o índice do DataFrame</span></span>
+<span id="cb4-12"><a href=""></a><span class="fu">df.to_csv</span>(arquivo_csv_saida, <span class="at">index=</span>False, <span class="at">encoding=</span><span class="st">'utf-8'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-38" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p>Agora vamos carregar as imagens e criar os embeddings usando o ViT:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Uma pasta de exemplo com algumas imagens e subpastas</span></span>
+<span id="cb5-2"><a href=""></a><span class="co"># Ex:</span></span>
+<span id="cb5-3"><a href=""></a><span class="co"># minha_pasta/</span></span>
+<span id="cb5-4"><a href=""></a><span class="co"># ├── imagem1.jpg</span></span>
+<span id="cb5-5"><a href=""></a><span class="co"># ├── subpasta1/</span></span>
+<span id="cb5-6"><a href=""></a><span class="co"># │   └── imagem2.png</span></span>
+<span id="cb5-7"><a href=""></a><span class="co"># └── subpasta2/</span></span>
+<span id="cb5-8"><a href=""></a><span class="co">#     └── imagem3.jpeg</span></span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a><span class="co"># Caminho da sua pasta de imagens</span></span>
+<span id="cb5-11"><a href=""></a>pasta_de_imagens <span class="ot">=</span> <span class="st">'database/natural_images_without_bg'</span></span>
+<span id="cb5-12"><a href=""></a>todas_as_imagens <span class="ot">=</span> <span class="fu">ler_imagens_pillow</span>(pasta_de_imagens)</span>
+<span id="cb5-13"><a href=""></a><span class="fu">print</span>(f<span class="st">"</span><span class="sc">\n</span><span class="st">Total de imagens encontradas: {len(todas_as_imagens)}"</span>)</span>
+<span id="cb5-14"><a href=""></a></span>
+<span id="cb5-15"><a href=""></a><span class="co"># Você pode acessar as imagens lidas, por exemplo:</span></span>
+<span id="cb5-16"><a href=""></a><span class="co"># if todas_as_imagens:</span></span>
+<span id="cb5-17"><a href=""></a><span class="co">#     todas_as_imagens[0].show() # Mostra a primeira imagem</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lendo algoritmo ViT</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Lendo algoritmo ViT - PreTrained</span></span>
+<span id="cb6-2"><a href=""></a>processor <span class="ot">=</span> <span class="fu">ViTImageProcessor.from_pretrained</span>(<span class="st">'google/vit-base-patch16-224'</span>)</span>
+<span id="cb6-3"><a href=""></a>model <span class="ot">=</span> <span class="fu">ViTForImageClassification.from_pretrained</span>(<span class="st">'google/vit-base-patch16-224'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-39" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Fazendo processo de normalização dos embeddings e criando o índice FAISS:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)</span></span>
+<span id="cb7-2"><a href=""></a><span class="co"># return_tensors="pt" garante que a saída seja um tensor PyTorch.</span></span>
+<span id="cb7-3"><a href=""></a>inputs <span class="ot">=</span> <span class="fu">processor</span>(<span class="at">images=</span>todas_as_imagens[<span class="dv">0</span>], <span class="at">return_tensors=</span><span class="st">"pt"</span>)</span>
+<span id="cb7-4"><a href=""></a><span class="co"># 2. Passar as imagens pré-processadas pelo modelo ViT</span></span>
+<span id="cb7-5"><a href=""></a>outputs <span class="ot">=</span> <span class="fu">model</span>(<span class="sc">**</span>inputs)</span>
+<span id="cb7-6"><a href=""></a>logits <span class="ot">=</span> outputs.logits</span>
+<span id="cb7-7"><a href=""></a><span class="co"># Convertendo os logits para numpy (seu vetor de embeddings)</span></span>
+<span id="cb7-8"><a href=""></a>img_embds <span class="ot">=</span> <span class="fu">logits.detach</span>()<span class="fu">.numpy</span>()</span>
+<span id="cb7-9"><a href=""></a><span class="co"># Normalize os embeddings (para usar distância do cosseno)</span></span>
+<span id="cb7-10"><a href=""></a>img_embds <span class="ot">=</span> img_embds <span class="sc">/</span> <span class="fu">np.linalg.norm</span>(img_embds, <span class="at">axis=</span><span class="dv">1</span>, <span class="at">keepdims=</span>True)</span>
+<span id="cb7-11"><a href=""></a><span class="co"># Definindo o índice FAISS para busca vetorial</span></span>
+<span id="cb7-12"><a href=""></a>d <span class="ot">=</span> img_embds.shape[<span class="dv">1</span>]  <span class="co"># dimensão dos embeddings</span></span>
+<span id="cb7-13"><a href=""></a><span class="co"># Crie um índice para produto interno (proxy para distância do cosseno)</span></span>
+<span id="cb7-14"><a href=""></a>index <span class="ot">=</span> <span class="fu">faiss.IndexFlatIP</span>(d)</span>
+<span id="cb7-15"><a href=""></a><span class="co"># Adicione os embeddings normalizados</span></span>
+<span id="cb7-16"><a href=""></a><span class="fu">index.add</span>(img_embds)</span>
+<span id="cb7-17"><a href=""></a><span class="fu">print</span>(f<span class="st">"Número de itens no índice: {index.ntotal}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-40" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Fazendo processo de normalização dos embeddings e criando o índice FAISS:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="cf">for</span> i <span class="cf">in</span> <span class="fu">range</span>(<span class="dv">1</span>,<span class="fu">len</span>(todas_as_imagens))<span class="sc">:</span></span>
+<span id="cb8-2"><a href=""></a>    <span class="co"># O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)</span></span>
+<span id="cb8-3"><a href=""></a>    <span class="co"># return_tensors="pt" garante que a saída seja um tensor PyTorch.</span></span>
+<span id="cb8-4"><a href=""></a>    inputs <span class="ot">=</span> <span class="fu">processor</span>(<span class="at">images=</span>todas_as_imagens[i], <span class="at">return_tensors=</span><span class="st">"pt"</span>)</span>
+<span id="cb8-5"><a href=""></a>    <span class="co"># 2. Passar as imagens pré-processadas pelo modelo ViT</span></span>
+<span id="cb8-6"><a href=""></a>    outputs <span class="ot">=</span> <span class="fu">model</span>(<span class="sc">**</span>inputs)</span>
+<span id="cb8-7"><a href=""></a>    logits <span class="ot">=</span> outputs.logits</span>
+<span id="cb8-8"><a href=""></a></span>
+<span id="cb8-9"><a href=""></a>    <span class="co"># Convertendo os logits para numpy (seu vetor de embeddings)</span></span>
+<span id="cb8-10"><a href=""></a>    img_embds <span class="ot">=</span> <span class="fu">logits.detach</span>()<span class="fu">.numpy</span>()</span>
+<span id="cb8-11"><a href=""></a></span>
+<span id="cb8-12"><a href=""></a>    <span class="co"># Normalize os embeddings (para usar distância do cosseno)</span></span>
+<span id="cb8-13"><a href=""></a>    img_embds <span class="ot">=</span> img_embds <span class="sc">/</span> <span class="fu">np.linalg.norm</span>(img_embds, <span class="at">axis=</span><span class="dv">1</span>, <span class="at">keepdims=</span>True)</span>
+<span id="cb8-14"><a href=""></a></span>
+<span id="cb8-15"><a href=""></a>    <span class="co"># Adicione os embeddings normalizados</span></span>
+<span id="cb8-16"><a href=""></a>    <span class="fu">index.add</span>(img_embds)</span>
+<span id="cb8-17"><a href=""></a>    <span class="fu">print</span>(f<span class="st">"Número de itens no índice: {index.ntotal}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-41" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Pré-processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Salvando as imagens no FAISS:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a>import faiss</span>
+<span id="cb9-2"><a href=""></a></span>
+<span id="cb9-3"><a href=""></a><span class="co"># Suponha que 'index' seja seu índice FAISS</span></span>
+<span id="cb9-4"><a href=""></a><span class="co">#faiss.write_index(index, 'faiss_index_SF.index')  # Salva o índice em um arquivo</span></span>
+<span id="cb9-5"><a href=""></a><span class="fu">faiss.write_index</span>(index, <span class="st">'faiss_index_embeddings/vector_databases_faiss_index.index'</span>)  <span class="co"># Salva o índice em um arquivo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Para carregar o índice posteriormente:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>import faiss</span>
+<span id="cb10-2"><a href=""></a></span>
+<span id="cb10-3"><a href=""></a><span class="co"># Ler o índice do arquivo</span></span>
+<span id="cb10-4"><a href=""></a>index <span class="ot">=</span> <span class="fu">faiss.read_index</span>(<span class="st">'faiss_index_embeddings/vector_databases_faiss_index.index'</span>)  <span class="co"># Carrega o índice de um arquivo</span></span>
+<span id="cb10-5"><a href=""></a></span>
+<span id="cb10-6"><a href=""></a><span class="fu">print</span>(f<span class="st">"Número de itens no índice: {index.ntotal}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section class="slide level2">
+
+<br> <br> <br> <br> <br> <br>
+<hr>
+<h2 style="color:#0000fd;text-align:center;">
+Código python - Processamento
+</h2>
+<hr>
+</section>
+<section id="section-42" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Lendo as bibliotecas necessárias:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Lendo as bibliotecas</span></span>
+<span id="cb11-2"><a href=""></a>from transformers import ViTImageProcessor, ViTForImageClassification</span>
+<span id="cb11-3"><a href=""></a>from PIL import Image</span>
+<span id="cb11-4"><a href=""></a>import requests</span>
+<span id="cb11-5"><a href=""></a>import os</span>
+<span id="cb11-6"><a href=""></a>import torch</span>
+<span id="cb11-7"><a href=""></a></span>
+<span id="cb11-8"><a href=""></a></span>
+<span id="cb11-9"><a href=""></a>import pandas as pd</span>
+<span id="cb11-10"><a href=""></a>import numpy as np</span>
+<span id="cb11-11"><a href=""></a>import matplotlib.pyplot as plt</span>
+<span id="cb11-12"><a href=""></a></span>
+<span id="cb11-13"><a href=""></a>import faiss</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-43" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Lendo a lista de Índices e Caminhos das imagens pré-processadas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a>import pandas as pd</span>
+<span id="cb12-2"><a href=""></a></span>
+<span id="cb12-3"><a href=""></a>lista <span class="ot">=</span> <span class="fu">pd.read_csv</span>(<span class="st">"database/indices_imagens_preprocessadas.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Importando o FAISS e carregando o índice de embeddings:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a>import faiss</span>
+<span id="cb13-2"><a href=""></a></span>
+<span id="cb13-3"><a href=""></a><span class="co"># Carrega o índice de um arquivo</span></span>
+<span id="cb13-4"><a href=""></a><span class="co"># Ler o índice do arquivo</span></span>
+<span id="cb13-5"><a href=""></a>index <span class="ot">=</span> <span class="fu">faiss.read_index</span>(<span class="st">'faiss_index_embeddings/vector_databases_faiss_index.index'</span>)  </span>
+<span id="cb13-6"><a href=""></a></span>
+<span id="cb13-7"><a href=""></a><span class="fu">print</span>(f<span class="st">"Número de itens no índice: {index.ntotal}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lendo algoritmo ViT:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Lendo algoritmo ViT - PreTrained</span></span>
+<span id="cb14-2"><a href=""></a>processor <span class="ot">=</span> <span class="fu">ViTImageProcessor.from_pretrained</span>(<span class="st">'google/vit-base-patch16-224'</span>)</span>
+<span id="cb14-3"><a href=""></a>model <span class="ot">=</span> <span class="fu">ViTForImageClassification.from_pretrained</span>(<span class="st">'google/vit-base-patch16-224'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-44" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p>Lendo uma nova imagem para buscar similaridades:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a>import io</span>
+<span id="cb15-2"><a href=""></a>from rembg import remove</span>
+<span id="cb15-3"><a href=""></a></span>
+<span id="cb15-4"><a href=""></a><span class="co"># Processar a nova imagem</span></span>
+<span id="cb15-5"><a href=""></a>imagem <span class="ot">=</span> <span class="fu">Image.open</span>(<span class="st">"database/natural_images2/airplane/airplane_0004.jpg"</span>)</span>
+<span id="cb15-6"><a href=""></a>img_redimensionada <span class="ot">=</span> <span class="fu">imagem.resize</span>((<span class="dv">640</span>, <span class="dv">480</span>), Image.LANCZOS) <span class="co"># Usando LANCZOS para melhor qualidade</span></span>
+<span id="cb15-7"><a href=""></a>bytes_saida <span class="ot">=</span> <span class="fu">remove</span>(img_redimensionada)</span>
+<span id="cb15-8"><a href=""></a>novaimagem <span class="ot">=</span> <span class="fu">bytes_saida.convert</span>(<span class="st">'RGB'</span>)</span>
+<span id="cb15-9"><a href=""></a></span>
+<span id="cb15-10"><a href=""></a>novaimagem</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div style="text-align:center;">
+<p><img data-src="images/aviao1.png" class="fixed" style="width:35.0%"></p>
+</div>
+</section>
+<section id="section-45" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p>Criando os embeddings da nova imagem:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a>inputs <span class="ot">=</span> <span class="fu">processor</span>(<span class="at">images=</span>novaimagem, <span class="at">return_tensors=</span><span class="st">"pt"</span>)</span>
+<span id="cb16-2"><a href=""></a>outputs <span class="ot">=</span> <span class="fu">model</span>(<span class="sc">**</span>inputs)</span>
+<span id="cb16-3"><a href=""></a>nova_embedding <span class="ot">=</span> <span class="fu">outputs.logits.detach</span>()<span class="fu">.numpy</span>()</span>
+<span id="cb16-4"><a href=""></a><span class="co"># Normalize os embeddings (para usar distância do cosseno)</span></span>
+<span id="cb16-5"><a href=""></a>nova_embedding <span class="ot">=</span> nova_embedding <span class="sc">/</span> <span class="fu">np.linalg.norm</span>(nova_embedding, <span class="at">axis=</span><span class="dv">1</span>, <span class="at">keepdims=</span>True)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Buscando as 4 imagens mais similares:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="co"># Buscando as k imagens mais próximas no índice</span></span>
+<span id="cb17-2"><a href=""></a>k <span class="ot">=</span> <span class="dv">4</span>  <span class="co"># Número de imagens semelhantes a buscar</span></span>
+<span id="cb17-3"><a href=""></a>distances, indices <span class="ot">=</span> <span class="fu">index.search</span>(nova_embedding, k)</span>
+<span id="cb17-4"><a href=""></a><span class="co"># Imagens Retornadas</span></span>
+<span id="cb17-5"><a href=""></a>imagens_retornadas <span class="ot">=</span> [i <span class="cf">for</span> i <span class="cf">in</span> indices[<span class="dv">0</span>]]</span>
+<span id="cb17-6"><a href=""></a></span>
+<span id="cb17-7"><a href=""></a><span class="co"># Valores da distância do Cosseno</span></span>
+<span id="cb17-8"><a href=""></a>distances</span>
+<span id="cb17-9"><a href=""></a></span>
+<span id="cb17-10"><a href=""></a><span class="co"># Indices das Imagens Retornadas</span></span>
+<span id="cb17-11"><a href=""></a>imagens_retornadas</span>
+<span id="cb17-12"><a href=""></a>imagens_retornadas <span class="ot">=</span> [x <span class="sc">-</span> <span class="dv">1</span> <span class="cf">for</span> x <span class="cf">in</span> imagens_retornadas]</span>
+<span id="cb17-13"><a href=""></a></span>
+<span id="cb17-14"><a href=""></a><span class="co"># Criando uma sublista apenas com as imagens retornadas</span></span>
+<span id="cb17-15"><a href=""></a>sublista <span class="ot">=</span> lista[lista[<span class="st">'indice'</span>]<span class="fu">.isin</span>(imagens_retornadas)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-46" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p><br></p>
+<p>Criando uma array de imagens retornadas para plotar como uma grade:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="co"># Criando uma array com das imagens</span></span>
+<span id="cb18-2"><a href=""></a>novasimagem <span class="ot">=</span> []</span>
+<span id="cb18-3"><a href=""></a></span>
+<span id="cb18-4"><a href=""></a><span class="cf">for</span> i <span class="cf">in</span> <span class="fu">range</span>(<span class="fu">len</span>(sublista))<span class="sc">:</span></span>
+<span id="cb18-5"><a href=""></a>    imgpath <span class="ot">=</span> sublista.iloc[i][<span class="dv">1</span>]</span>
+<span id="cb18-6"><a href=""></a>    <span class="co"># Processar a nova imagem</span></span>
+<span id="cb18-7"><a href=""></a>    imagem <span class="ot">=</span> <span class="fu">Image.open</span>(imgpath)</span>
+<span id="cb18-8"><a href=""></a>    <span class="co"># Usando LANCZOS para melhor qualidade</span></span>
+<span id="cb18-9"><a href=""></a>    img_redimensionada <span class="ot">=</span> <span class="fu">imagem.resize</span>((<span class="dv">640</span>, <span class="dv">480</span>), Image.LANCZOS) </span>
+<span id="cb18-10"><a href=""></a>    novaimagem <span class="ot">=</span> <span class="fu">img_redimensionada.convert</span>(<span class="st">'RGB'</span>)</span>
+<span id="cb18-11"><a href=""></a>    <span class="fu">novasimagem.append</span>(novaimagem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-47" class="slide level2">
+<h2></h2>
+<h2 style="color:#0000fd;">
+Código python - Processamento
+</h2>
+<hr>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p>Plotando as imagens retornadas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>largura_celula <span class="ot">=</span> <span class="dv">640</span></span>
+<span id="cb19-2"><a href=""></a>altura_celula <span class="ot">=</span> <span class="dv">480</span></span>
+<span id="cb19-3"><a href=""></a></span>
+<span id="cb19-4"><a href=""></a>largura_total <span class="ot">=</span> largura_celula <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb19-5"><a href=""></a>altura_total <span class="ot">=</span> altura_celula <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb19-6"><a href=""></a>grade_final <span class="ot">=</span> <span class="fu">Image.new</span>(<span class="st">'RGB'</span></span>
+<span id="cb19-7"><a href=""></a>  (largura_total, altura_total))</span>
+<span id="cb19-8"><a href=""></a></span>
+<span id="cb19-9"><a href=""></a><span class="fu">grade_final.paste</span>(novasimagem[<span class="dv">0</span>],</span>
+<span id="cb19-10"><a href=""></a>  (<span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb19-11"><a href=""></a><span class="fu">grade_final.paste</span>(novasimagem[<span class="dv">1</span>],</span>
+<span id="cb19-12"><a href=""></a>  (largura_celula, <span class="dv">0</span>))</span>
+<span id="cb19-13"><a href=""></a><span class="fu">grade_final.paste</span>(novasimagem[<span class="dv">2</span>],</span>
+<span id="cb19-14"><a href=""></a>  (<span class="dv">0</span>, altura_celula))</span>
+<span id="cb19-15"><a href=""></a><span class="fu">grade_final.paste</span>(novasimagem[<span class="dv">3</span>],</span>
+<span id="cb19-16"><a href=""></a>  (largura_celula, altura_celula))</span>
+<span id="cb19-17"><a href=""></a></span>
+<span id="cb19-18"><a href=""></a><span class="co"># Mostra a imagem da grade na tela</span></span>
+<span id="cb19-19"><a href=""></a><span class="fu">print</span>(<span class="st">"Exibindo a grade de imagens na tela..."</span>)</span>
+<span id="cb19-20"><a href=""></a><span class="fu">grade_final.show</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:48%;">
+<div style="text-align:center; margin-top:-50px;">
+<p><img data-src="images/aviao1.png" class="fixed" style="width:50.0%"></p>
+</div>
+<div style="text-align:center;">
+<p><img data-src="images/aviao2.png" class="fixed" style="width:80.0%"></p>
+</div>
+</div></div>
 
 </section>
 
@@ -1096,6 +1663,44 @@ Por que usar similaridade do cosseno?
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

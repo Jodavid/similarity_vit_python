@@ -50,6 +50,8 @@ editor:
 <h4>Universidade Federal de Pernambuco</h4>
 
 
+![](images/logo_ufpe_facepe.png)
+
 <!---
 
 <br/> <br/> <br/> <br/> <br/>
@@ -159,7 +161,7 @@ editor:
 
 
 ## 
-<h2 style= "color:#0000fd;">Desafio com as imagens</h2>
+<h2 style= "color:#0000fd;">Desafio com imagens</h2>
 
 <hr/>
 
@@ -179,7 +181,7 @@ editor:
 ::::
 </div>
 
-<h3 style="text-align:center; color:red;"> Como posso garantir que nessas duas imagens estão o mesmo animal?</h3>
+<h3 style="text-align:center; color:red;">Como posso garantir que nessas duas imagens estão o mesmo animal?</h3>
 
 ---
 
@@ -417,20 +419,6 @@ Entretanto, existem outras formas de representar cores, como o espaço CMYK.
 -  A Figura acima mostra uma arquitetura típica de uma rede neural convolucional que contém uma camada de entrada, camadas convolucionais, camadas de pooling (subamostragem, ou down sampling), camadas de ativação, camadas totalmente conectadas e uma camada de saída.
 
 
-<!-- 
----
-
-## 
-<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
-
-<hr/>
-
-<br/>
-
- -->
-
-
-
 ---
 
 ## 
@@ -449,6 +437,19 @@ o modelo em classificação de imagens de forma supervisionada. -->
 
 <div style="text-align:center;">
 ![](images/arquiteturaViT.png){.fixed width=50%}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
+
+<hr/>
+<br/>
+
+
+<div style="text-align:center;">
+![Como um vision transformer opera sobre os patches das imagens.](images/ch13-fig04.png){.fixed width=80%}
 </div>
 
 <!-- Figura 1: Visão geral do modelo. Dividimos uma imagem em fragmentos de tamanho fixo, incorporamos linearmente cada um deles, adicionamos embeddings de posição e alimentamos a sequência de vetores resultante em um codificador Transformer padrão. Para realizar a classificação, usamos a abordagem padrão de adicionar um "token de classificação" extra aprendível à sequência. A ilustração do codificador Transformer foi inspirada em Vaswani et al. -->
@@ -500,8 +501,10 @@ Essa contagem de palavras em um texto pode variar dependendo da linguagem, do ta
 
 <hr/>
 
+<br/>
 
-   - *Embeddings* são vetores numéricos obtidos dos *tokens* e representam palavras, frases ou documentos.
+
+- *Embeddings* são vetores numéricos obtidos dos *tokens* e representam palavras, frases ou documentos.
 
 - Os *embeddings* é o processo de transformar o mapeamento do vetor de texto de entrada em uma representação matricial^[Alguns modelos já incorporam o processo de tokenização.].
 
@@ -511,8 +514,8 @@ Essa contagem de palavras em um texto pode variar dependendo da linguagem, do ta
 
 - Atualmente, elas são criadas usando técnicas de *machine learning*, como Word2Vec ou GloVe e *deep learning*, como BERT, GPT-3, e os modelos mais atuais de LLMs.
 
-<!-- 
----
+
+<!-- ---
 
 
 ## 
@@ -521,10 +524,30 @@ Essa contagem de palavras em um texto pode variar dependendo da linguagem, do ta
 <hr/>
 
 
-![](images/embedd2.webp)
+![](images/embedd2.webp) -->
 
---- -->
+---
 
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+<br/>
+
+- Os embeddings podem ter um número maior ou menor de dimensões do que a entrada original. Por exemplo, usando métodos de embedding para expressão extrema, podemos codificar dados em representações bidimensionais densas e contínuas para fins de visualização.
+
+- Uma propriedade fundamental dos embeddings é que eles codificam distância ou similaridade,  ou seja, eles capturam a semântica dos dados de forma que entradas semelhantes estejam próximas no espaço de embeddings.
+
+<div style="text-align:center;">
+![](images/ch01-fig02.png){.fixed width=50%}
+</div>
+
+
+
+
+
+---
 
 ## 
 <h2 style= "color:#0000fd;"> ViT: Uma ideia inspirada no BERT</h2>
@@ -585,7 +608,7 @@ O BERT é baseado no **Encoder do Transformer**. Ele utiliza:
 - **Tokenização**: cada palavra vira um token.
 - **Embeddings**: os tokens viram vetores numéricos.
 - **Atenção (Self-Attention)**: calcula o quanto cada palavra influencia as outras.
-- **Tarefa de treino**: *Masked Language Modeling (MLM)*, onde uma palavra é escondida e o modelo precisa prever qual é.
+- **Tarefa de treino**: *Masked Language Modeling (MLM)*, onde um percentual de palavras (por exemplo, 15%) são ocultadas e o modelo precisa prever quais são.
 
 ---
 
@@ -817,6 +840,35 @@ Similaridade do Cosseno ($Sim_{cos}$):
 - A similaridade do cosseno captura melhor a **orientação** dos vetores, que reflete similaridade semântica, independente do comprimento.
 
 
+---
+
+## 
+<h2 style= "color:#0000fd;">Vamos ao python?</h2>
+<h4 style= "color:#0000fd;">Como vamos seguir:</h4>
+
+<hr/>
+
+
+
+1. **Banco de dados de Imagens:**  A base de dados foi nomeada de **Natural Images** e pode ser encontrada no Kaggle e no Github <https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file>.
+
+. . .
+
+2. **Remover Background:** Vamos remover o fundo das imagens para facilitar na similaridade das imagens.
+
+. . .
+
+3. **Criar Embeddings:** Vamos criar os embeddings das imagens usando o ViT.
+
+. . .
+
+4. **Salvar Embeddings:** Vamos salvar os embeddings em um banco de dados para embeddings (FAISS) para facilitar o uso posterior.
+
+. . .
+
+5. **Buscar Imagens:** Vamos buscar imagens similares usando a similaridade do cosseno.
+
+
 <!-- ---
 
 ## 
@@ -859,6 +911,24 @@ Similaridade do Cosseno ($Sim_{cos}$):
  -->
 
 
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Referências</h2>
+
+<hr/>
+<br/>
+
+- Alexey Dosovitskiy et al., "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale" (2020). <https://arxiv.org/abs/2010.11929>
+
+- Raschka, Sebastian. "Machine learning Q and AI: 30 essential questions and answers on machine learning and AI". No Starch Press, 2024. <https://sebastianraschka.com/books/ml-q-and-ai-chapters/ch01/#table-of-contents>
+
+- Johnson, Jeff, Matthijs Douze, and Hervé Jégou. "Billion-scale similarity search with GPUs." IEEE Transactions on Big Data 7.3 (2019): 535-547. <https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8733051>
+
+- Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009. <https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5206848>
+
 ------------------------------------------------------------------------
 
 <br/> <br/>
@@ -877,4 +947,511 @@ OBRIGADO!
 Slide produzido com [quarto](https://quarto.org/)
 :::
 
-<br/> <br/> <br/> <br/> <br/> <br/> <br/>
+<br/> <br/> 
+
+<div style="text-align:center;">
+![](images/logo_ufpe_facepe.png){.fixed width=60%}
+</div>
+
+<br/> <br/> <br/> <br/> <br/>
+
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<h2 style= "color:#0000fd;text-align:center;">Código python - Pré-Processamento</h2>
+<hr/>
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+Aqui estou utilizando um Ambiente Conda para instalar as dependências necessárias, com `python 3.10`.
+
+```{r, echo=TRUE, eval=FALSE}
+# Ambiente vit conda
+conda activate vit
+
+!pip install faiss-gpu
+!pip install faiss-cpu
+!pip install -r requirements.txt
+```
+
+Lendo as bibliotecas necessárias:
+
+```{r, echo=TRUE, eval=FALSE}
+# Lendo as bibliotecas
+from transformers import ViTImageProcessor, ViTForImageClassification
+from PIL import Image
+import requests
+import os
+import torch
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+import faiss
+```
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+Função para ler imagens de um diretório e retornar em outro diretório pré-determinado as imagens
+sem background, mas também a função retorna uma lista de imagens com um índice e o caminho original da imagem:
+
+```{r, echo=TRUE, eval=FALSE, out.height=1}
+# Pre-processar as imagens -
+# Padronizar as imagens e remover background
+import csv
+import os
+from PIL import Image
+from rembg import remove
+import io
+
+def processar_imagens_otimizado(caminho_pasta_entrada, caminho_pasta_saida, largura=640, altura=480):
+    # (Mesma função processar_imagens_otimizado que você já tem)
+    if not os.path.exists(caminho_pasta_saida):
+        os.makedirs(caminho_pasta_saida)
+        print(f"Pasta de saída criada: {caminho_pasta_saida}")
+
+    lista_indices_caminhos = []
+    indice_atual = 0
+
+    for raiz, _, arquivos in os.walk(caminho_pasta_entrada):
+        arquivos.sort() # Garante uma ordem consistente
+        
+        for arquivo in arquivos:
+            if arquivo.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff')):
+                caminho_completo_entrada = os.path.join(raiz, arquivo)
+                
+                lista_indices_caminhos.append({
+                    'indice': indice_atual,
+                    'caminho_original': caminho_completo_entrada
+                })
+                indice_atual += 1
+
+                nome_arquivo_sem_ext, extensao = os.path.splitext(arquivo)
+                extensao_saida = '.png' if extensao.lower() != '.png'
+                  else extensao
+                nome_arquivo_saida = f"{nome_arquivo_sem_ext}_processado{extensao_saida}"
+                caminho_completo_saida = os.path.join(caminho_pasta_saida, nome_arquivo_saida)
+
+                try:
+                    img_original = Image.open(caminho_completo_entrada)
+                    img_redimensionada = img_original.resize((largura, altura), Image.LANCZOS)
+
+                    buffer_img = io.BytesIO()
+                    img_redimensionada.save(buffer_img, format='PNG' if extensao_saida == '.png'
+                      else img_original.format)
+                    buffer_img.seek(0)
+
+                    bytes_entrada = buffer_img.read()
+                    bytes_saida = remove(bytes_entrada)
+
+                    with open(caminho_completo_saida, 'wb') as o:
+                        o.write(bytes_saida)
+                    print(f"Processado e salvo: {caminho_completo_saida}
+                      (Original: {caminho_completo_entrada})")
+
+                except FileNotFoundError:
+                    print(f"Erro: Arquivo não encontrado: {caminho_completo_entrada}")
+                except Exception as e:
+                    print(f"Erro ao processar {caminho_completo_entrada}: {e}")
+
+    return lista_indices_caminhos
+
+
+
+
+#    
+``` 
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+
+Processando as imagens e salvando os índices em um arquivo CSV:
+
+```{r, echo=TRUE, eval=FALSE}
+
+# Padronizar as imagens e remover background
+pasta_entrada = 'database/natural_images'
+pasta_saida = 'database/natural_images_without_bg'
+arquivo_csv_saida = 'database/indices_imagens_preprocessadas.csv'
+
+# Processa as imagens e obtém a lista de índices/caminhos
+info_imagens = processar_imagens_otimizado(pasta_entrada, pasta_saida,
+  largura=224, altura=224)
+# Salvando em CSV a lista de arquivos originais
+df = pd.DataFrame(info_imagens)
+# index=False para não salvar o índice do DataFrame
+df.to_csv(arquivo_csv_saida, index=False, encoding='utf-8') 
+```
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+Agora vamos carregar as imagens e criar os embeddings usando o ViT:
+
+```{r, echo=TRUE, eval=FALSE}
+# Uma pasta de exemplo com algumas imagens e subpastas
+# Ex:
+# minha_pasta/
+# ├── imagem1.jpg
+# ├── subpasta1/
+# │   └── imagem2.png
+# └── subpasta2/
+#     └── imagem3.jpeg
+
+# Caminho da sua pasta de imagens
+pasta_de_imagens = 'database/natural_images_without_bg'
+todas_as_imagens = ler_imagens_pillow(pasta_de_imagens)
+print(f"\nTotal de imagens encontradas: {len(todas_as_imagens)}")
+
+# Você pode acessar as imagens lidas, por exemplo:
+# if todas_as_imagens:
+#     todas_as_imagens[0].show() # Mostra a primeira imagem
+```
+
+
+Lendo algoritmo ViT
+```{r, echo=TRUE, eval=FALSE}
+# Lendo algoritmo ViT - PreTrained
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
+model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+Fazendo processo de normalização dos embeddings e criando o índice FAISS:
+
+```{r, echo=TRUE, eval=FALSE}
+# O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)
+# return_tensors="pt" garante que a saída seja um tensor PyTorch.
+inputs = processor(images=todas_as_imagens[0], return_tensors="pt")
+# 2. Passar as imagens pré-processadas pelo modelo ViT
+outputs = model(**inputs)
+logits = outputs.logits
+# Convertendo os logits para numpy (seu vetor de embeddings)
+img_embds = logits.detach().numpy()
+# Normalize os embeddings (para usar distância do cosseno)
+img_embds = img_embds / np.linalg.norm(img_embds, axis=1, keepdims=True)
+# Definindo o índice FAISS para busca vetorial
+d = img_embds.shape[1]  # dimensão dos embeddings
+# Crie um índice para produto interno (proxy para distância do cosseno)
+index = faiss.IndexFlatIP(d)
+# Adicione os embeddings normalizados
+index.add(img_embds)
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+
+Fazendo processo de normalização dos embeddings e criando o índice FAISS:
+```{r, echo=TRUE, eval=FALSE}
+for i in range(1,len(todas_as_imagens)):
+    # O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)
+    # return_tensors="pt" garante que a saída seja um tensor PyTorch.
+    inputs = processor(images=todas_as_imagens[i], return_tensors="pt")
+    # 2. Passar as imagens pré-processadas pelo modelo ViT
+    outputs = model(**inputs)
+    logits = outputs.logits
+
+    # Convertendo os logits para numpy (seu vetor de embeddings)
+    img_embds = logits.detach().numpy()
+
+    # Normalize os embeddings (para usar distância do cosseno)
+    img_embds = img_embds / np.linalg.norm(img_embds, axis=1, keepdims=True)
+
+    # Adicione os embeddings normalizados
+    index.add(img_embds)
+    print(f"Número de itens no índice: {index.ntotal}")
+```
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+Salvando as imagens no FAISS:
+
+```{r, echo=TRUE, eval=FALSE}
+import faiss
+
+# Suponha que 'index' seja seu índice FAISS
+#faiss.write_index(index, 'faiss_index_SF.index')  # Salva o índice em um arquivo
+faiss.write_index(index, 'faiss_index_embeddings/vector_databases_faiss_index.index')  # Salva o índice em um arquivo
+
+```
+
+Para carregar o índice posteriormente:
+
+```{r, echo=TRUE, eval=FALSE}
+import faiss
+
+# Ler o índice do arquivo
+index = faiss.read_index('faiss_index_embeddings/vector_databases_faiss_index.index')  # Carrega o índice de um arquivo
+
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<h2 style= "color:#0000fd;text-align:center;">Código python - Processamento</h2>
+<hr/>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Lendo as bibliotecas necessárias:
+
+```{r, echo=TRUE, eval=FALSE}
+# Lendo as bibliotecas
+from transformers import ViTImageProcessor, ViTForImageClassification
+from PIL import Image
+import requests
+import os
+import torch
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+import faiss
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Lendo a lista de Índices e Caminhos das imagens pré-processadas:
+```{r, echo=TRUE, eval=FALSE}
+import pandas as pd
+
+lista = pd.read_csv("database/indices_imagens_preprocessadas.csv")
+```
+
+
+Importando o FAISS e carregando o índice de embeddings:
+```{r, echo=TRUE, eval=FALSE}
+import faiss
+
+# Carrega o índice de um arquivo
+# Ler o índice do arquivo
+index = faiss.read_index('faiss_index_embeddings/vector_databases_faiss_index.index')  
+
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+Lendo algoritmo ViT:
+```{r, echo=TRUE, eval=FALSE}
+# Lendo algoritmo ViT - PreTrained
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
+model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224')
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+
+Lendo uma nova imagem para buscar similaridades:
+
+```{r, echo=TRUE, eval=FALSE}
+import io
+from rembg import remove
+
+# Processar a nova imagem
+imagem = Image.open("database/natural_images2/airplane/airplane_0004.jpg")
+img_redimensionada = imagem.resize((640, 480), Image.LANCZOS) # Usando LANCZOS para melhor qualidade
+bytes_saida = remove(img_redimensionada)
+novaimagem = bytes_saida.convert('RGB')
+
+novaimagem
+```
+
+<div style="text-align:center;">
+![](images/aviao1.png){.fixed width=35%}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+
+
+Criando os embeddings da nova imagem:
+```{r, echo=TRUE, eval=FALSE}
+inputs = processor(images=novaimagem, return_tensors="pt")
+outputs = model(**inputs)
+nova_embedding = outputs.logits.detach().numpy()
+# Normalize os embeddings (para usar distância do cosseno)
+nova_embedding = nova_embedding / np.linalg.norm(nova_embedding, axis=1, keepdims=True)
+``` 
+
+
+Buscando as 4 imagens mais similares:
+
+```{r, echo=TRUE, eval=FALSE}
+# Buscando as k imagens mais próximas no índice
+k = 4  # Número de imagens semelhantes a buscar
+distances, indices = index.search(nova_embedding, k)
+# Imagens Retornadas
+imagens_retornadas = [i for i in indices[0]]
+
+# Valores da distância do Cosseno
+distances
+
+# Indices das Imagens Retornadas
+imagens_retornadas
+imagens_retornadas = [x - 1 for x in imagens_retornadas]
+
+# Criando uma sublista apenas com as imagens retornadas
+sublista = lista[lista['indice'].isin(imagens_retornadas)]
+``` 
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Criando uma array de imagens retornadas para plotar como uma grade:
+
+```{r, echo=TRUE, eval=FALSE}
+# Criando uma array com das imagens
+novasimagem = []
+
+for i in range(len(sublista)):
+    imgpath = sublista.iloc[i][1]
+    # Processar a nova imagem
+    imagem = Image.open(imgpath)
+    # Usando LANCZOS para melhor qualidade
+    img_redimensionada = imagem.resize((640, 480), Image.LANCZOS) 
+    novaimagem = img_redimensionada.convert('RGB')
+    novasimagem.append(novaimagem)
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+Plotando as imagens retornadas:
+
+```{r, echo=TRUE, eval=FALSE}
+largura_celula = 640
+altura_celula = 480
+
+largura_total = largura_celula * 2
+altura_total = altura_celula * 2
+grade_final = Image.new('RGB'
+  (largura_total, altura_total))
+
+grade_final.paste(novasimagem[0],
+  (0, 0))
+grade_final.paste(novasimagem[1],
+  (largura_celula, 0))
+grade_final.paste(novasimagem[2],
+  (0, altura_celula))
+grade_final.paste(novasimagem[3],
+  (largura_celula, altura_celula))
+
+# Mostra a imagem da grade na tela
+print("Exibindo a grade de imagens na tela...")
+grade_final.show()
+```
+
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align:center; margin-top:-50px;">
+![](images/aviao1.png){.fixed width=50%}
+</div>
+
+<div style="text-align:center;">
+![](images/aviao2.png){.fixed width=80%}
+</div>
+
+
+:::
+
+::::
