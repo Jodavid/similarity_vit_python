@@ -445,7 +445,6 @@ o modelo em classificação de imagens de forma supervisionada. -->
 <h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
 
 <hr/>
-<br/>
 
 
 <div style="text-align:center;">
@@ -481,7 +480,7 @@ No contexto textual, a **tokenização** é o processo de pegar o texto e transf
 <hr/>
 
 
-![](images/token2.webp){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
+![](images/token2.png){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
 
 
 Apesar da referência, palavras grandes podem ser divididas em *subtokens* menores, sendo assim, em 1.000 tokens de palavras em português correspondem aproximadamente a aproximadamente 700 a 750 palavras do nosso idioma.
@@ -532,8 +531,6 @@ Essa contagem de palavras em um texto pode variar dependendo da linguagem, do ta
 <h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
 
 <hr/>
-
-<br/>
 
 - Os embeddings podem ter um número maior ou menor de dimensões do que a entrada original. Por exemplo, usando métodos de embedding para expressão extrema, podemos codificar dados em representações bidimensionais densas e contínuas para fins de visualização.
 
