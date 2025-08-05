@@ -1,0 +1,5 @@
+/.quarto/
+/Codigo_ViT/Download modelo rembg.txt
+/Codigo_ViT/database/natural_images/*
+/Codigo_ViT/database/natural_images_without_bg/*
+/Codigo_ViT/database/Dados_Imagens_Tutorial_ViT.zip

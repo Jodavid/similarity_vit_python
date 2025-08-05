@@ -1,0 +1,1546 @@
+---
+#title: "Similaridade de Imagens usando Vision Transformers no python"
+#subtitle: ""
+author: "Jodavid Ferreira"
+institute: "UFPE"
+title-slide-attributes:
+  data-background-image: images/capa.png
+  data-background-size: contain
+  #data-background-opacity: "0.2"
+format:
+  revealjs:
+    slide-number: c/t
+    css: ["css/jodavid.css"]
+    theme: default #dark
+    #footer: images/rodape.png
+    #footer: "Similaridade de Imagens usando Vision Transformers no python - [Jodavid Ferreira](https://jodavid.github.io/)"
+    #logo: "images/logo_capa.png"
+    smaller: True
+    incremental: false
+    transition: concave
+    background-transition: convex
+editor_options: 
+  chunk_output_type: inline
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+
+##  {background-image="images/capa.png" background-opacity="1" background-size="80%"}
+
+<div style= "margin-left: -100px;margin-top: -170px;">
+<img src="images/logo_capa.png" width="500px"/>
+</div>
+
+
+##  {background-image="images/capa_pb.png" background-opacity=".1" background-size="80%"}
+
+
+<br/>
+<br/>
+
+<div style="margin-top:20px">
+<h2 style= "color:#0000fd;">Similaridade de Imagens usando Vision Transformers no python</h2>
+</div>
+
+<br/> <br/>
+<h3>Jodavid Ferreira</h3>
+<h4>Departamento de Estatística</h4>
+<h4>Universidade Federal de Pernambuco</h4>
+
+
+![](images/logo_ufpe_facepe.png)
+
+<!---
+
+<br/> <br/> <br/> <br/> <br/>
+
+
+
+![](images/imagem1.jpeg){.absolute bottom="180" right="0" width="700"}
+
+<h2 style="text-align: left"> O que é </h2>
+<h2 style="text-align: left"> Ciência de </h2>
+<h2 style="text-align: left"> Dados? </h2>
+
+--->
+
+
+
+## 
+<h2 style= "color:#0000fd;">Início</h2>
+<hr/>
+<br/>
+
+- Maio/2024;
+- Enchente no Rio Grande do Sul;
+
+. . .
+
+<div style="text-align:left;">
+![](images/RioGrandedoSul.jpg){.fixed width=500px}
+</div>
+
+. . .
+
+<div style="text-align:right; margin-top:-500px; margin-right:10px;">
+- Muitas pessoas desabrigadas;
+- Muitos animais perdidos de seus donos;
+</div>
+
+. . .
+
+<div style="text-align:right;">
+![](images/Cachorro-enchente.jpg){.fixed width=500px}
+</div>
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+<div style="text-align:center;">
+![](images/scraping.png){.fixed width="900px"}
+<h3> Fazer Scraping de Imagens</h3>
+</div>
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+<div style="text-align:center;">
+![](images/montagem_rbras_2025/rect8409_1.png){.fixed height="100%"}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_2.png){.fixed width="90%"}
+
+
+. . .
+
+<div  style="margin-left: 130px; margin-top: -500px;">
+![](images/montagem_rbras_2025/rect8409_0.png){.fixed width="700px"}
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_3.png){.fixed width="100%"}
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Ideia neste tutorial</h2>
+<hr/>
+
+![](images/montagem_rbras_2025/rect8409_4.png){.fixed width="100%"}
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Desafio com imagens</h2>
+
+<hr/>
+
+<br/>
+
+<div style="text-align:center;">
+:::: {.columns}
+
+::: {.column width="48%"}
+![](images/gato3.jpeg){.fixed width="500"}
+:::
+
+::: {.column width="48%"}
+![](images/gato4.jpeg){.fixed width="500"}
+:::
+
+::::
+</div>
+
+<h3 style="text-align:center; color:red;">Como posso garantir que nessas duas imagens estão o mesmo animal?</h3>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/visao/image_original.png){.absolute left=15%  width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Imagem Original</div>
+
+
+![](images/visao/componente_g.png){.absolute left=15% bottom=5% width="300"}
+<div style="margin-left: 200px; margin-top: 230px;">Componente - G</div>
+
+:::
+
+::: {.column width="50%"}
+
+![](images/visao/componente_R.png){.absolute right=15% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - R</div>
+
+![](images/visao/componente_b.png){.absolute right=15% bottom=5% width="300"}
+<div style="margin-left: 130px; margin-top: 230px;">Componente - B</div>
+
+
+:::
+
+::::
+
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+
+<hr/>
+
+<br/>
+
+#### Espaço RGB de Cores
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/visao/imagem_rgb.png){.absolute width="450"}
+
+:::
+
+::: {.column width="50%"}
+
+- Um único pixel consiste de
+três componentes que
+variam entre [0,255].
+
+- Cada *pixel* e um vetor:
+
+![](images/visao/vetor_computador.png){.absolute width="550"}
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<!-- <div style="text-align:center; margin: -30px 200px 0px 50px;">
+Vetor-pixel na
+memória do
+computador
+</div> -->
+
+<div style="text-align:center; margin: -30px 0px 0px 400px;">
+Pixel na
+imagem
+</div>
+
+:::
+
+::::
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+<br/>
+
+
+- Em geral define-se em três como o número de cores primarias em um espaço,
+devido ao fato do olho humano possuírem três tipos de fotorreceptores.
+
+- A partir destas cores primarias, é possível gerar todas as outras cores do espaço.
+
+
+**Representação como pontos de um espaço 3D de Cor**
+
+Cores criadas com o vetor R,G,B
+
+<div style="text-align:center;">
+![](images/visao/tabela_cores_exemplo.png){.fixed width="400px"}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Imagens digitais</h2>
+
+<hr/>
+
+
+Entretanto, existem outras formas de representar cores, como o espaço CMYK.
+
+- O padrão RGB tem síntese aditiva, e é conhecido como cor luz, pois quando as três cores são sobrepostas formam o branco. Já o CMY tem síntese substrativa (também conhecido como pigmento), pois quando sobrepostas, as três cores formam a cor preto (K).
+  
+  - Que são as cores que são utilizadas em impressoras.
+
+. . .
+
+<div  style="margin-left: 130px; margin-top: -150px;">
+![](images/visao/cmyk-and_rgb.webp)
+</div>
+
+---
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<hr/>
+<h2 style= "text-align:center; color:#0000fd;">Processamento de Imagens com </h2>
+<h2 style= "text-align:center;  color:#0000fd;">*Deep Learning*</h2>
+<hr/>
+
+<br/>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br/>
+
+#### Um pouco de história
+
+- O **ImageNet Large-Scale Visual Recognition Challenge (ILSVRC)** era uma competição anual de reconhecimento visual em larga escala, que começou em 2010 e ocorreu até 2017. A competição era baseada no banco de dados ImageNet, que contém milhões de imagens anotadas em milhares de categorias.
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+<div style="text-align:center;">
+![Fonte: https://cs.stanford.edu/people/karpathy/cnnembed/](images/ImageNet.jpg){.fixed width=35%}
+</div>
+
+:::
+::: {.column width="40%"}
+
+- O dataset ImageNet contém 14.197.122 imagens rotuladas, com 20.000 categorias de objetos, sendo que cada categoria contém pelo menos 500 imagens.
+:::
+::::
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br/>
+
+#### Um pouco de história
+
+
+- Em 2012, a equipe da Universidade de Toronto, liderada por Alex Krizhevsky, Ilya Sutskever e Geoffrey Hinton, desenvolveu uma CNN chamada **AlexNet** ([paper](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf)), que obteve uma precisão de erro de 16,4%, superando significativamente os métodos tradicionais e significativamente melhor que o segundo colocado do mesmo ano, que teve uma taxa de erro de 26,2%.
+
+<div style="text-align:center; margin-top: -50px;">
+![](images/cnn/CNN.gif){.fixed width=55%}
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+<br>
+
+- As Redes Neurais Convolucionais (CNNs) continuaram atraindo a atenção após vencerem o Desafio ImageNet até o ano de 2017.
+
+<!-- - Existiam 50.000 imagens coloridas de alta resolução em 1.000 categorias;
+
+- O treinamento com 1,2 milhão de imagens; -->
+
+- Em 2017, a SENet (<https://arxiv.org/abs/1709.01507>) alcançou uma taxa de erro de 2,3% em 2017.
+
+
+<div style="text-align:center;">
+![](images/cnn/top_five_imagenet.png){.fixed width=65%}
+</div>
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Redes Neurais Convolucionais</h2>
+
+<hr/>
+
+![](images/cnn/arquitetura_cnn.png){.fixed width=60%}
+
+-  A Figura acima mostra uma arquitetura típica de uma rede neural convolucional que contém uma camada de entrada, camadas convolucionais, camadas de pooling (subamostragem, ou down sampling), camadas de ativação, camadas totalmente conectadas e uma camada de saída.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
+
+<hr/>
+<br/>
+
+- **Junho/2021:** Autores da Google Research publicaram o artigo "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale" ([paper](https://arxiv.org/abs/2010.11929)).
+
+- Segundo os autores, inspirados pelos sucessos do escalonamento de Transformers em NLP (Processamento de Linguagem Natural), experimentaram aplicar um Transformer padrão diretamente às imagens, com o mínimo de modificações possível.
+
+<!-- Para isso, dividimos uma imagem em patches e fornecemos a sequência de embeddings lineares desses patches como entrada para um Transformer. Patches de imagem são tratados da mesma forma que tokens (palavras) em uma aplicação de NLP. Treinamos
+o modelo em classificação de imagens de forma supervisionada. -->
+
+
+<div style="text-align:center;">
+![](images/arquiteturaViT.png){.fixed width=50%}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">ViT - Visual Transformers</h2>
+
+<hr/>
+
+
+<div style="text-align:center;">
+![Como um vision transformer opera sobre os patches das imagens.](images/ch13-fig04.png){.fixed width=80%}
+</div>
+
+<!-- Figura 1: Visão geral do modelo. Dividimos uma imagem em fragmentos de tamanho fixo, incorporamos linearmente cada um deles, adicionamos embeddings de posição e alimentamos a sequência de vetores resultante em um codificador Transformer padrão. Para realizar a classificação, usamos a abordagem padrão de adicionar um "token de classificação" extra aprendível à sequência. A ilustração do codificador Transformer foi inspirada em Vaswani et al. -->
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+- *Tokens* e *Embeddings* são a base dos modelos baseados em atenção e *transformers*.
+
+. . .
+
+No contexto textual, a **tokenização** é o processo de pegar o texto e transformar as sequências de entrada em representação numérica.
+
+  - é um mapeamento direto de *palavras* para números, uma mesma palavra vai receber o mesmo *token* (pode ser modelado, mas rapidamente se torna muito grande).
+  - os *tokens* geralmente são palavras, mas também podem ser frases, sinais de pontuação ou até caracteres individuais.
+  - A tokenização é o primeiro passo no processamento de linguagem natural (NLP) e é essencial para a pré-processamento de texto.
+  - ela ajuda a preparar os dados textuais para análise, tornando-os mais estruturados.
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+
+![](images/token2.png){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
+
+
+Apesar da referência, palavras grandes podem ser divididas em *subtokens* menores, sendo assim, em 1.000 tokens de palavras em português correspondem aproximadamente a aproximadamente 700 a 750 palavras do nosso idioma.
+
+Essa contagem de palavras em um texto pode variar dependendo da linguagem, do tamanho das palavras e do uso de pontuações.
+
+::: {style="align-items: center;"}
+![](images/token_embeddings.gif){style="margin: 0 0 0 300px; width: 450px; height: auto;"}
+:::
+
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+<br/>
+
+
+- *Embeddings* são vetores numéricos obtidos dos *tokens* e representam palavras, frases ou documentos.
+
+- Os *embeddings* é o processo de transformar o mapeamento do vetor de texto de entrada em uma representação matricial^[Alguns modelos já incorporam o processo de tokenização.].
+
+- Os *embeddings* possuem uma melhor representação do relacionamento entre os tokens.
+
+- Os *embeddings* conseguem capturar a estrutura semântica das palavras ou frases e suas relações no texto.
+
+- Atualmente, elas são criadas usando técnicas de *machine learning*, como Word2Vec ou GloVe e *deep learning*, como BERT, GPT-3, e os modelos mais atuais de LLMs.
+
+
+<!-- ---
+
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+
+![](images/embedd2.webp) -->
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Tokens e Embeddings</h2>
+
+<hr/>
+
+- Os embeddings podem ter um número maior ou menor de dimensões do que a entrada original. Por exemplo, usando métodos de embedding para expressão extrema, podemos codificar dados em representações bidimensionais densas e contínuas para fins de visualização.
+
+- Uma propriedade fundamental dos embeddings é que eles codificam distância ou similaridade,  ou seja, eles capturam a semântica dos dados de forma que entradas semelhantes estejam próximas no espaço de embeddings.
+
+<div style="text-align:center;">
+![](images/ch01-fig02.png){.fixed width=50%}
+</div>
+
+
+
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> ViT: Uma ideia inspirada no BERT</h2>
+
+<hr/>
+<br/>
+
+O **Vision Transformer (ViT)** aplica uma ideia originalmente desenvolvida para **texto** — o **BERT** — no mundo da **visão computacional**.
+
+<br/>
+
+Ambos os modelos usam o mesmo conceito central:  
+- **"Compreender partes (tokens ou patches) em relação ao todo usando atenção."**
+
+. . .
+
+<br/>
+
+<h3  style= "color:#0000fd;">  O que é o BERT?</h3>
+
+**BERT** (*Bidirectional Encoder Representations from Transformers*) é um modelo de linguagem criado pela [Google (2018)](https://research.google/blog/open-sourcing-bert-state-of-the-art-pre-training-for-natural-language-processing/) para **compreender texto com base no contexto completo**.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">BERT</h2>
+
+<hr/>
+<br/>
+
+- o BERT **olha para toda a frase ao mesmo tempo** (bidirecionalidade)
+  - ao contrário de modelos que leem da **esquerda para a direita**, 
+
+- Isso permite entender o **significado exato de uma palavra**, considerando tudo o que está antes **e depois** dela.
+
+  - Frase 1: "*Ele sentou no banco para descansar.*"  
+  - Frase 2: "*Ele foi ao banco sacar dinheiro.*"
+
+- Mesmo a palavra **"banco"** sendo igual, o significado muda.  
+
+- O BERT entende isso porque ele **considera todas as palavras da frase ao mesmo tempo**.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> Como o BERT funciona internamente?</h2>
+
+<hr/>
+<br/>
+
+O BERT é baseado no **Encoder do Transformer**. Ele utiliza:
+
+<br/>
+
+
+- **Tokenização**: cada palavra vira um token.
+- **Embeddings**: os tokens viram vetores numéricos.
+- **Atenção (Self-Attention)**: calcula o quanto cada palavra influencia as outras.
+- **Tarefa de treino**: *Masked Language Modeling (MLM)*, onde um percentual de palavras (por exemplo, 15%) são ocultadas e o modelo precisa prever quais são.
+
+---
+
+## 
+<h2 style= "color:#0000fd;"> A ideia central: tokens + atenção</h2>
+
+<hr/>
+<br/>
+
+> "Vamos representar uma sequência de unidades (tokens, patches) como vetores e deixar o modelo **aprender relações entre elas com autoatenção**."
+
+<br/>
+
+
+Essa ideia permite que o modelo **reconheça padrões globais**, não apenas locais.
+
+<br/>
+
+
+O ViT **usa exatamente essa mesma lógica**, mas com **imagens** em vez de texto.
+
+
+<!-- 
+---
+
+## 
+<h2 style= "color:#0000fd;"> ViT e BERT</h2>
+
+<hr/>
+<br/>
+
+| Etapa                   | BERT (Texto)                      | ViT (Imagem)                      |
+|-------------------------|------------------------------------|-----------------------------------|
+| Entrada                 | Sequência de palavras (tokens)     | Patches da imagem (ex: 16×16 px)  |
+| Embedding               | Vetor para cada palavra            | Vetor para cada patch             |
+| Posição                 | Embedding de posição adicionado    | Embedding de posição adicionado   |
+| Processamento           | Transformer Encoder (atenção)      | Transformer Encoder (atenção)     |
+| Pré-treinamento         | Prever palavras (MLM)              | Prever patches (Masked Patch)     |
+| Saída                   | Tarefa textual                     | Tarefa visual (ex: classificação) |
+
+--- -->
+
+
+## 
+<h2 style= "color:#0000fd;"> ViT aplicado às imagens?</h2>
+
+<hr/>
+<br/>
+
+O **ViT** (Vision Transformer) transforma uma imagem da seguinte forma:
+
+<br/>
+
+1. **Divide a imagem em pequenos blocos** (patches), como se fossem palavras visuais.
+2. Cada patch é **transformado em um vetor** (embedding), como o BERT faz com palavras.
+3. Esses vetores são alimentados em um **Transformer Encoder**, com camadas de atenção.
+4. O modelo aprende a **relacionar todas as partes da imagem** para tomar decisões (ex: classificar).
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;"> ViT aplicado às imagens?</h2>
+
+<hr/>
+<br/>
+
+O **ViT** (Vision Transformer) transforma uma imagem da seguinte forma:
+
+<br/>
+
+<span style="color:red;">
+1. **Divide a imagem em pequenos blocos** (patches), como se fossem palavras visuais.
+</span>
+
+<span style="color:red;">
+2. Cada patch é **transformado em um vetor** (embedding), como o BERT faz com palavras.
+</span>
+
+<span style="color:red;">
+3. Esses vetores são alimentados em um **Transformer Encoder**, com camadas de atenção.
+</span>
+
+4. O modelo aprende a **relacionar todas as partes da imagem** para tomar decisões (ex: classificar, segmentar).
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">FAISS</h2>
+
+<hr/>
+<br/>
+
+> **FAISS (Facebook AI Similarity Search)** é uma biblioteca criada pelo Facebook AI para fazer **buscas eficientes em grandes conjuntos de vetores** (como *embeddings*).
+
+. . .
+
+<h4 style= "color:#0000fd; font-size:30pt;">Para que serve?</h4>
+
+Quando você tem **vetores** (ex: gerados por BERT ou ViT) e deseja encontrar **os mais próximos** (similaridade). 
+
+Isso é comum em tarefas como:
+
+- Busca semântica (texto/imagem semelhante)
+- Recuperação de imagens por conteúdo
+- Sistemas de recomendação baseados em embeddings
+<!-- - Deduplicação ou clustering rápido -->
+
+
+<!-- ---
+
+## 
+<h2 style= "color:#0000fd;">Distância do Cosseno</h2>
+
+<hr/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+Detalhes importantes:
+
+Similaridade do Cosseno ($Sim_{cos}$):
+
+- Maior valor (próximo de 1): Maior similaridade.
+- Menor valor (próximo de -1): Maior dissimilaridade.
+
+Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
+
+- Maior valor (próximo de 2): Maior dissimilaridade.
+- Menor valor (próximo de 0): Maior similaridade.
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+<br/>
+
+![](images/simi_eq.png){style="margin: 0 0 0 0; width:550px;"}
+<br/>
+
+![](images/Cosine-similarity.jpg){style="margin: 0 0 0 0; width:550px;"}
+
+:::
+
+::::
+
+
+--- -->
+
+
+
+## 
+<h2 style= "color:#0000fd;">k-NN - vizinhos mais próximos</h2>
+<h4 style= "color:#0000fd;">usando similaridade do cosseno</h4>
+<hr/>
+
+- Quando trabalhamos com **embeddings** (vetores que representam texto, imagem, etc), uma tarefa comum é encontrar os **k vetores mais semelhantes** a um vetor consulta.
+
+<br/>
+
+<h4 style= "color:#0000fd;">O que é a similaridade do cosseno?</h4>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+- Mede o **ângulo** entre dois vetores.
+
+Similaridade do Cosseno:
+
+- Maior valor (próximo de 1): Maior similaridade.
+- Menor valor (próximo de -1): Maior dissimilaridade.
+
+<!-- Distância do Cosseno ($D_{cos} = 1 - Sim_{cos}$):
+
+- Maior valor (próximo de 2): Maior dissimilaridade.
+- Menor valor (próximo de 0): Maior similaridade. -->
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+<br/>
+
+![](images/simi_eq.png){style="margin: -100px 0 0 0; width:550px;"}
+<br/>
+
+![](images/Cosine-similarity.jpg){style="margin: 0 0 0 0; width:550px;"}
+
+:::
+
+::::
+
+---
+
+## 
+<h2 style= "color:#0000fd;">k-NN com similaridade do cosseno</h2>
+<h4 style= "color:#0000fd;">Como funciona?</h4>
+<hr/>
+
+
+1. Dado um vetor consulta, comparamos ele com todos os vetores da base.
+2. Calculamos a similaridade do cosseno entre o vetor consulta e cada vetor da base.
+3. Selecionamos os **k vetores com maior similaridade** (mais próximos).
+
+<br/>
+
+<h4 style= "color:#0000fd;">Por que usar similaridade do cosseno?</h4>
+
+- Embeddings geralmente são normalizados para magnitude 1.
+- A similaridade do cosseno captura melhor a **orientação** dos vetores, que reflete similaridade semântica, independente do comprimento.
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Vamos ao python?</h2>
+<h4 style= "color:#0000fd;">Como vamos seguir:</h4>
+
+<hr/>
+
+
+
+1. **Banco de dados de Imagens:**  A base de dados foi nomeada de **Natural Images** e pode ser encontrada no Kaggle e no Github <https://github.com/prasunroy/cnn-on-degraded-images?tab=readme-ov-file>.
+
+. . .
+
+
+2. **Remover Background:** Vamos remover o fundo das imagens para facilitar na similaridade das imagens. Foi utilizado o U²-Net <https://arxiv.org/pdf/2005.09007>
+
+. . .
+
+3. **Criar Embeddings:** Vamos criar os embeddings das imagens usando o ViT.
+
+. . .
+
+4. **FAISS:** Armazenar os embeddings no FAISS.
+
+. . .
+
+5. **Encontrar Similares:** Vamos buscar imagens similares usando através do cosseno.
+
+
+<!-- ---
+
+## 
+<h2 style= "color:#0000fd;"> Similaridades das *words*</h2>
+
+<hr/>
+
+<br/>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+<div style="font-size:18pt">
+
+- As *word embeddings* transformam os valores inteiros únicos obtidos a partir do tokenizador em um array $n$-dimensional.
+
+- Por exemplo, a palavra 'gato' pode ter o valor '20' a partir do tokenizador, mas a camada de *embedding*  utilizará todas as palavras no seu vocabulário associadas a 'gato' para construir o vetor de *embeddings*. Ela encontra "dimensões" ou características, como "ser vivo", "felino", "humano", "gênero", etc.
+
+
+- Assim, a palavra 'gato' terá valores diferentes para cada dimensão/característica.
+
+
+
+</div>
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="47%"}
+
+![](images/word-embeddings.png){style="margin: 0 0 0 0; width:1550px;"}
+
+:::
+
+::::
+
+ -->
+
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Referências</h2>
+
+<hr/>
+<br/>
+
+- Alexey Dosovitskiy et al., "An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale" (2020). <https://arxiv.org/abs/2010.11929>
+
+- Raschka, Sebastian. "Machine learning Q and AI: 30 essential questions and answers on machine learning and AI". No Starch Press, 2024. <https://sebastianraschka.com/books/ml-q-and-ai-chapters/ch01/#table-of-contents>
+
+- Johnson, Jeff, Matthijs Douze, and Hervé Jégou. "Billion-scale similarity search with GPUs." IEEE Transactions on Big Data 7.3 (2019): 535-547. <https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8733051>
+
+- Deng, Jia, et al. "Imagenet: A large-scale hierarchical image database." 2009 IEEE conference on computer vision and pattern recognition. Ieee, 2009. <https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5206848>
+
+------------------------------------------------------------------------
+
+<br/> <br/>
+
+<hr/>
+
+<h1 style="text-align: center;">
+
+OBRIGADO!
+
+</h1>
+
+<hr/>
+
+::: {style="text-align: center"}
+Slide produzido com [quarto](https://quarto.org/)
+:::
+
+<br/> <br/> 
+
+<div style="text-align:center;">
+![](images/logo_ufpe_facepe.png){.fixed width=60%}
+</div>
+
+<br/> <br/> <br/> <br/> <br/>
+
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<h2 style= "color:#0000fd;text-align:center;">Código python - Pré-Processamento</h2>
+<hr/>
+
+
+---
+
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+Aqui estou utilizando um Ambiente Conda para instalar as dependências necessárias, com `python 3.10`.
+
+```{r, echo=TRUE, eval=FALSE}
+# Ambiente vit conda
+conda activate vit
+
+!pip install faiss-gpu
+!pip install faiss-cpu
+!pip install -r requirements.txt
+```
+
+Lendo as bibliotecas necessárias:
+
+```{r, echo=TRUE, eval=FALSE, results='asis'}
+# Lendo as bibliotecas
+from transformers import ViTImageProcessor, ViTModel
+import torch
+from PIL import Image
+import os
+
+from rembg import remove
+import io
+
+import pandas as pd
+import numpy as np
+
+import faiss
+```
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+Função para ler imagens de um diretório, remover o background e salvar em outro repositório.
+Esta função também retorna uma lista com um 'id' para as imagens e o caminho da imagem original.
+
+
+```{r, echo=TRUE, eval=FALSE, out.height=1}
+# Pre-processar as imagens -
+# Padronizar as imagens e remover background
+
+def processar_imagens_otimizado(caminho_pasta_entrada, caminho_pasta_saida, largura=640, altura=480):
+    # (Mesma função processar_imagens_otimizado que você já tem)
+    if not os.path.exists(caminho_pasta_saida):
+        os.makedirs(caminho_pasta_saida)
+        print(f"Pasta de saída criada: {caminho_pasta_saida}")
+
+    lista_indices_caminhos = []
+    indice_atual = 0
+
+    for raiz, _, arquivos in os.walk(caminho_pasta_entrada):
+        arquivos.sort() # Garante uma ordem consistente
+        
+        for arquivo in arquivos:
+            if arquivo.lower().endswith(('.png', '.jpg', '.jpeg', '.webp', '.bmp', '.tiff')):
+                caminho_completo_entrada = os.path.join(raiz, arquivo)
+                
+                lista_indices_caminhos.append({
+                    'indice': indice_atual,
+                    'caminho_original': caminho_completo_entrada
+                })
+                indice_atual += 1
+
+                nome_arquivo_sem_ext, extensao = os.path.splitext(arquivo)
+                extensao_saida = '.png' if extensao.lower() != '.png' else extensao
+                nome_arquivo_saida = f"{nome_arquivo_sem_ext}_processado{extensao_saida}"
+                caminho_completo_saida = os.path.join(caminho_pasta_saida, nome_arquivo_saida)
+
+                try:
+                    img_original = Image.open(caminho_completo_entrada)
+                    img_redimensionada = img_original.resize((largura, altura), Image.LANCZOS)
+
+                    buffer_img = io.BytesIO()
+                    img_redimensionada.save(buffer_img, format='PNG' if extensao_saida == '.png' else img_original.format)
+                    buffer_img.seek(0)
+
+                    bytes_entrada = buffer_img.read()
+                    bytes_saida = remove(bytes_entrada)
+
+                    with open(caminho_completo_saida, 'wb') as o:
+                        o.write(bytes_saida)
+                    print(f"Processado e salvo: {caminho_completo_saida} (Original: {caminho_completo_entrada})")
+
+                except FileNotFoundError:
+                    print(f"Erro: Arquivo não encontrado: {caminho_completo_entrada}")
+                except Exception as e:
+                    print(f"Erro ao processar {caminho_completo_entrada}: {e}")
+
+    return lista_indices_caminhos
+
+
+
+
+
+#    
+``` 
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+
+Processando as imagens e salvando os índices em um arquivo CSV:
+
+```{r, echo=TRUE, eval=FALSE}
+
+# Padronizar as imagens e remover background
+pasta_entrada = 'database/natural_images'
+pasta_saida = 'database/natural_images_without_bg'
+arquivo_csv_saida = 'database/indices_imagens_preprocessadas.csv'
+
+# Processa as imagens e obtém a lista de índices/caminhos
+info_imagens = processar_imagens_otimizado(pasta_entrada, pasta_saida,
+  largura=224, altura=224)
+# Salvando em CSV a lista de arquivos originais
+df = pd.DataFrame(info_imagens)
+# index=False para não salvar o índice do DataFrame
+df.to_csv(arquivo_csv_saida, index=False, encoding='utf-8') 
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+
+Função para ler as imagens em uma lista:
+
+```{r, echo=TRUE, eval=FALSE}
+# Ler as imagens da pasta database/natural_images_without_bg
+def ler_imagens(lista_imagens, raiz):
+    imagens = []
+
+    for arquivo in lista_imagens:
+        nome_arquivo = os.path.basename(arquivo)
+        nome_arquivo_sem_ext, extensao = os.path.splitext(nome_arquivo)
+        extensao_saida = '.png' if extensao.lower() != '.png' else extensao
+        nome_arquivo_saida = f"{nome_arquivo_sem_ext}_processado{extensao_saida}"
+        caminho_completo_saida = os.path.join(raiz, nome_arquivo_saida)
+
+        try:
+            img = Image.open(caminho_completo_saida)
+            img = img.convert('RGB')
+            imagens.append(img)
+            print(f"Imagem lida: {caminho_completo_saida}")
+        except Exception as e:
+            print(f"Não foi possível ler a imagem {caminho_completo_saida}: {e}")
+    return imagens
+```
+
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+Agora vamos carregar as imagens e criar os embeddings usando o ViT:
+
+```{r, echo=TRUE, eval=FALSE}
+# Lendo as Imagens para criação dos Embeddings:
+lista = pd.read_csv("database/indices_imagens_preprocessadas.csv")
+lista_imagens = lista["caminho_original"]
+raiz = "database/natural_images_without_bg/"
+todas_as_imagens = ler_imagens(lista_imagens, raiz)
+print(f"\nTotal de imagens encontradas: {len(todas_as_imagens)}")
+
+# Você pode acessar as imagens:
+# todas_as_imagens[0] # Mostra a primeira imagem
+```
+
+<br/>
+
+
+Lendo o ViT
+```{r, echo=TRUE, eval=FALSE}
+# Lendo algoritmo ViT - PreTrained
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
+model = ViTModel.from_pretrained('google/vit-base-patch16-224')
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+Fazendo processo de normalização dos embeddings e criando o índice FAISS:
+
+```{r, echo=TRUE, eval=FALSE}
+# O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)
+# return_tensors="pt" garante que a saída seja um tensor PyTorch.
+inputs = processor(images=todas_as_imagens[0], return_tensors="pt")
+# 2. Passar as imagens pré-processadas pelo modelo ViT
+with torch.no_grad():
+    outputs = model(**inputs)
+# Pega o embedding
+cls_embedding = outputs.last_hidden_state[:, 0, :]  # shape: [1, 768]
+# Convertendo os logits para numpy (seu vetor de embeddings)
+img_embds = cls_embedding.numpy()
+# Normalize os embeddings (para usar distância do cosseno)
+img_embds = img_embds / np.linalg.norm(img_embds, axis=1, keepdims=True)
+# Definindo o índice FAISS para busca vetorial
+d = img_embds.shape[1]  # dimensão dos embeddings
+# Crie um índice  para o vetor de embeddings
+index = faiss.IndexFlatIP(d)
+# Adicione os embeddings normalizados
+index.add(img_embds)
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+
+Fazendo processo de normalização dos embeddings e criando o índice FAISS:
+```{r, echo=TRUE, eval=FALSE}
+for i in range(1,len(todas_as_imagens)):
+    # O processor transforma as imagens para o formato que o modelo espera (pixels, normalização, etc.)
+    # return_tensors="pt" garante que a saída seja um tensor PyTorch.
+    inputs = processor(images=todas_as_imagens[i], return_tensors="pt")
+    # 2. Passar as imagens pré-processadas pelo modelo ViT
+    with torch.no_grad():
+        outputs = model(**inputs)
+    # Pega o embedding
+    cls_embedding = outputs.last_hidden_state[:, 0, :]  # shape: [1, 768]
+    # Convertendo os logits para numpy (seu vetor de embeddings)
+    img_embds = cls_embedding.numpy()
+
+    # Normalize os embeddings (para usar distância do cosseno)
+    img_embds = img_embds / np.linalg.norm(img_embds, axis=1, keepdims=True)
+
+    # Adicione os embeddings normalizados
+    index.add(img_embds)
+    print(f"Número de itens no índice: {index.ntotal}")
+```
+
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+<br/>
+
+Salvando as imagens no FAISS:
+
+```{r, echo=TRUE, eval=FALSE}
+# Salvando os indices de embeddings
+faiss.write_index(index, 'faiss_index_embeddings/vector_databases_faiss_index.index')  
+
+```
+
+Para carregar o índice posteriormente:
+
+```{r, echo=TRUE, eval=FALSE}
+# Lendo os índices
+index = faiss.read_index('faiss_index_embeddings/vector_databases_faiss_index.index')
+
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Pré-processamento</h2>
+
+<hr/>
+
+:::: {.columns}
+
+::: {.column width = "20%"}
+<div style="text-align:right;">
+![](images/remocao_background/dog_0530_224.jpg){.fixed width=100%}
+
+<p style ="margin-top:-20pt; font-size:12pt">Dimensões: 224px vs 224px</p>
+</div>
+
+<div style="text-align:right;">
+
+<div style="text-align:right;margin-right:50pt;">
+$\Uparrow$
+</div>
+
+![](images/remocao_background/dog_0530.jpg){.fixed width=100%}
+
+<p style ="margin-top:-20pt; font-size:12pt">Dimensões: 238px vs 280px</p>
+</div>
+
+
+:::
+
+::: {.column width = "10%"}
+<div style="margin-top:50pt; text-align:center;">
+$\Rightarrow$
+</div>
+
+:::
+
+::: {.column width = "20%"}
+
+<div style="text-align:left;">
+![](images/remocao_background/dog_0530_processado.png){.fixed width=100%}
+
+<p style ="margin-top:-20pt; font-size:12pt">Dimensões: 224px vs 224px</p>
+</div>
+
+<div style="text-align:left;">
+
+<div style="text-align:left;margin-left:50pt;">
+$\Downarrow$
+</div>
+
+![](images/remocao_background/dog_0530_processado_black.jpg){.fixed width=100%}
+
+<p style ="margin-top:-20pt; font-size:12pt">Dimensões: 238px vs 280px</p>
+</div>
+
+:::
+
+::: {.column width = "5%"}
+<div style="bottom: 120px; position: fixed; text-align:center;">
+$\Rightarrow$
+</div>
+
+:::
+
+::: {.column width = "40%"}
+
+<div style="bottom: 50px; position: fixed; text-align:left;">
+![](images/remocao_background/array_embeddings.png){.fixed width=100%}
+
+<p style ="margin-top:-20pt; font-size:12pt; text-align:center;">Dimensões: 1 vs 768</p>
+</div>
+
+:::
+
+
+::::
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<hr/>
+<h2 style= "color:#0000fd;text-align:center;">Código python - Processamento</h2>
+<hr/>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Lendo as bibliotecas necessárias:
+
+```{r, echo=TRUE, eval=FALSE}
+# Lendo as bibliotecas
+from transformers import ViTImageProcessor, ViTModel
+from PIL import Image
+import torch
+
+from rembg import remove
+
+import pandas as pd
+import numpy as np
+
+import faiss
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Lendo a lista de Índices e Caminhos das imagens pré-processadas:
+```{r, echo=TRUE, eval=FALSE}
+lista = pd.read_csv("database/indices_imagens_preprocessadas.csv")
+```
+
+
+Importando o FAISS e carregando o índice de embeddings:
+```{r, echo=TRUE, eval=FALSE}
+# Carrega o índice de um arquivo
+# Ler o índice do arquivo
+index = faiss.read_index('faiss_index_embeddings/vector_databases_faiss_index.index')  
+
+print(f"Número de itens no índice: {index.ntotal}")
+```
+
+Lendo o ViT:
+```{r, echo=TRUE, eval=FALSE}
+# Lendo algoritmo ViT - PreTrained
+processor = ViTImageProcessor.from_pretrained('google/vit-base-patch16-224')
+model = ViTModel.from_pretrained('google/vit-base-patch16-224')
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+
+Lendo uma nova imagem para buscar similaridades:
+
+```{r, echo=TRUE, eval=FALSE}
+
+# Processar a nova imagem
+imagem = Image.open("database/natural_images2/airplane/airplane_0004.jpg")
+img_redimensionada = imagem.resize((224, 224), Image.LANCZOS) # Usando LANCZOS para melhor qualidade
+bytes_saida = remove(img_redimensionada)
+novaimagem = bytes_saida.convert('RGB')
+
+novaimagem
+```
+
+<div style="text-align:center;">
+![](images/aviao1.png){.fixed width=35%}
+</div>
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+
+
+Criando os embeddings da nova imagem:
+```{r, echo=TRUE, eval=FALSE}
+inputs = processor(images=novaimagem, return_tensors="pt")
+with torch.no_grad():
+    outputs = model(**inputs)
+cls_embedding = outputs.last_hidden_state[:, 0, :]  # shape: [1, 768]
+nova_embedding = cls_embedding.numpy()
+# Normalize os embeddings (para usar distância do cosseno)
+nova_embedding = nova_embedding / np.linalg.norm(nova_embedding, axis=1, keepdims=True)
+``` 
+
+
+Buscando as 4 imagens mais similares:
+
+```{r, echo=TRUE, eval=FALSE}
+# Buscando as k imagens mais próximas no índice
+k = 4  # Número de imagens semelhantes a buscar
+distances, indices = index.search(nova_embedding, k)
+# Imagens Retornadas
+imagens_retornadas = [i for i in indices[0]]
+print(imagens_retornadas)
+
+# Valores da distância do Cosseno
+distances
+
+# Criando uma sublista apenas com as imagens retornadas
+sublista = lista[lista['indice'].isin(imagens_retornadas)]
+``` 
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+Criando uma array de imagens retornadas para plotar como uma grade:
+
+```{r, echo=TRUE, eval=FALSE}
+# Criando uma array com das imagens
+novasimagem = []
+
+for i in range(len(sublista)):
+    imgpath = sublista.iloc[i][1]
+    # Processar a nova imagem
+    imagem = Image.open(imgpath)
+    # Usando LANCZOS para melhor qualidade
+    img_redimensionada = imagem.resize((640, 480), Image.LANCZOS) 
+    novaimagem = img_redimensionada.convert('RGB')
+    novasimagem.append(novaimagem)
+```
+
+---
+
+## 
+<h2 style= "color:#0000fd;">Código python - Processamento</h2>
+
+<hr/>
+<br/>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+Plotando as imagens retornadas:
+
+```{r, echo=TRUE, eval=FALSE}
+largura_celula = 640
+altura_celula = 480
+
+largura_total = largura_celula * 2
+altura_total = altura_celula * 2
+grade_final = Image.new('RGB'
+  (largura_total, altura_total))
+
+grade_final.paste(novasimagem[0],
+  (0, 0))
+grade_final.paste(novasimagem[1],
+  (largura_celula, 0))
+grade_final.paste(novasimagem[2],
+  (0, altura_celula))
+grade_final.paste(novasimagem[3],
+  (largura_celula, altura_celula))
+
+# Mostra a imagem da grade na tela
+print("Exibindo a grade de imagens na tela...")
+grade_final.show()
+```
+
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align:center; margin-top:-50px;">
+![](images/aviao1.png){.fixed width=50%}
+</div>
+
+<div style="text-align:center;">
+![](images/aviao2.png){.fixed width=80%}
+</div>
+
+
+:::
+
+::::
