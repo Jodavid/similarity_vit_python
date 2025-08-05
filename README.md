@@ -1,6 +1,6 @@
 # 💻 Similaridade de Imagens usando Vision Transformers no python
 
-Útima Atualização: 28.05.2025
+Útima Atualização: 05.08.2025
 
 <div align="center">
 <img src="https://img.shields.io/badge/Python-%233776AB.svg?&style=for-the-badge&logo=python&logoColor=white" alt="Python">
